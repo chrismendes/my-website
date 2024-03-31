@@ -5,18 +5,84 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 /**
+ * Item in *Demo → Tech Stack*
+ */
+export interface DemoDocumentDataTechStackItem {}
+
+/**
+ * Content for Demo documents
+ */
+interface DemoDocumentData {
+  /**
+   * Title field in *Demo*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Demo*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Picture field in *Demo*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo.picture
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  picture: prismic.ImageField<never>;
+
+  /**
+   * Tech Stack field in *Demo*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo.tech_stack[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tech_stack: prismic.GroupField<Simplify<DemoDocumentDataTechStackItem>>;
+}
+
+/**
+ * Demo document from Prismic
+ *
+ * - **API ID**: `demo`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DemoDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<DemoDocumentData>, "demo", Lang>;
+
+/**
  * Item in *Home Page → Key Skills*
  */
 export interface HomepageDocumentDataKeySkillsItem {
   /**
-   * Skill field in *Home Page → Key Skills*
+   * Tech field in *Home Page → Key Skills*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.key_skills[].skill
+   * - **API ID Path**: homepage.key_skills[].tech
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  skill: prismic.ContentRelationshipField<"skill">;
+  tech: prismic.ContentRelationshipField<"tech">;
 }
 
 type HomepageDocumentDataSlicesSlice = never;
@@ -190,26 +256,26 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 /**
- * Content for Skill documents
+ * Content for Tech documents
  */
-interface SkillDocumentData {
+interface TechDocumentData {
   /**
-   * Name field in *Skill*
+   * Name field in *Tech*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: skill.name
+   * - **API ID Path**: tech.name
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   name: prismic.KeyTextField;
 
   /**
-   * Icon field in *Skill*
+   * Icon field in *Tech*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: skill.icon
+   * - **API ID Path**: tech.icon
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -217,18 +283,22 @@ interface SkillDocumentData {
 }
 
 /**
- * Skill document from Prismic
+ * Tech document from Prismic
  *
- * - **API ID**: `skill`
+ * - **API ID**: `tech`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type SkillDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<SkillDocumentData>, "skill", Lang>;
+export type TechDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<TechDocumentData>, "tech", Lang>;
 
-export type AllDocumentTypes = HomepageDocument | PageDocument | SkillDocument;
+export type AllDocumentTypes =
+  | DemoDocument
+  | HomepageDocument
+  | PageDocument
+  | TechDocument;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -240,6 +310,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      DemoDocument,
+      DemoDocumentData,
+      DemoDocumentDataTechStackItem,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataKeySkillsItem,
@@ -247,8 +320,8 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
-      SkillDocument,
-      SkillDocumentData,
+      TechDocument,
+      TechDocumentData,
       AllDocumentTypes,
     };
   }

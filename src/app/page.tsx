@@ -9,7 +9,7 @@ import { fontRoboto } from "@/ui/fonts";
 export default async function Home() {
 
   const page = await prismic.getByType("homepage", {
-    fetchLinks: ["skill.name", "skill.icon"]
+    fetchLinks: ["tech.name", "tech.icon"]
   });
   if (!page.results_size) {
     return notFound();
@@ -30,10 +30,12 @@ export default async function Home() {
               className="flex gap-x-4 lg:before:content-['{'] before:text-8xl before:text-slate-200 before:mt-[-10px] lg:after:content-['}'] after:text-8xl after:text-slate-200 after:mt-[-10px]"
               role="list"
             >
-              {content.key_skills.map(({ skill }, index) => (
+              {content.key_skills.map(({ tech }, index) => (
                 <li className="flex flex-col items-center justify-center gap-y-3 min-w-14">
-                  <PrismicNextImage field={skill.data.icon} key={index} />
-                  <span className="text-sm font-sans text-slate-500">{skill.data.name}</span>
+                  <SkillIcon
+                    image={<PrismicNextImage field={tech.data.icon} key={index} />}
+                    label={tech.data.name}
+                  />
                 </li>
               ))}
             </ul>

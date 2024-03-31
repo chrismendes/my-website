@@ -38,12 +38,12 @@
           "label": "Key Skills",
           "repeat": true,
           "fields": {
-            "skill": {
+            "tech": {
               "type": "Link",
               "config": {
-                "label": "Skill",
+                "label": "Tech",
                 "select": "document",
-                "customtypes": ["skill"]
+                "customtypes": ["tech"]
               }
             }
           }
