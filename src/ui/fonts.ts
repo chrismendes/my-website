@@ -8,8 +8,9 @@ export const fontNoto = Noto_Sans({
 });
 export const fontFjalla = Fjalla_One({
   subsets: ["latin"],
-  weight: "400"
+  weight: "400",
 });
 export const fontOswald = Oswald({
-  subsets: ["latin"]
+  subsets: ["latin"],
+  variable: "--font-oswald",
 });

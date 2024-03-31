@@ -2,7 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-p {
-  margin-top: 0;
-  margin-bottom: 12px;
+@layer base {
+  h1 {
+    font-family: var(--font-oswald);
+    @apply text-6xl;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+}
+
+@layer components {
+  img.framed {
+    box-shadow:
+      -50px -50px 0 -40px theme("colors.blue.900"),
+      50px 50px 0 -40px theme("colors.blue.900");
+  }
 }
