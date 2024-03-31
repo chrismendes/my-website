@@ -4,7 +4,7 @@ import "./globals.css";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 
-import { SiteHeader } from "@/ui/header";
+import { SiteHeader } from "@/ui";
 import { fontRoboto } from "@/ui/fonts";
 
 export const metadata: Metadata = {

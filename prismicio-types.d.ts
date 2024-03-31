@@ -4,6 +4,21 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Item in *Home Page → Key Skills*
+ */
+export interface HomepageDocumentDataKeySkillsItem {
+  /**
+   * Skill field in *Home Page → Key Skills*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.key_skills[].skill
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  skill: prismic.ContentRelationshipField<"skill">;
+}
+
 type HomepageDocumentDataSlicesSlice = never;
 
 /**
@@ -42,6 +57,17 @@ interface HomepageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   picture: prismic.ImageField<never>;
+
+  /**
+   * Key Skills field in *Home Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.key_skills[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  key_skills: prismic.GroupField<Simplify<HomepageDocumentDataKeySkillsItem>>;
 
   /**
    * Slice Zone field in *Home Page*
@@ -163,7 +189,46 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-export type AllDocumentTypes = HomepageDocument | PageDocument;
+/**
+ * Content for Skill documents
+ */
+interface SkillDocumentData {
+  /**
+   * Name field in *Skill*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skill.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Icon field in *Skill*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skill.icon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+}
+
+/**
+ * Skill document from Prismic
+ *
+ * - **API ID**: `skill`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SkillDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<SkillDocumentData>, "skill", Lang>;
+
+export type AllDocumentTypes = HomepageDocument | PageDocument | SkillDocument;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -177,10 +242,13 @@ declare module "@prismicio/client" {
     export type {
       HomepageDocument,
       HomepageDocumentData,
+      HomepageDocumentDataKeySkillsItem,
       HomepageDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      SkillDocument,
+      SkillDocumentData,
       AllDocumentTypes,
     };
   }

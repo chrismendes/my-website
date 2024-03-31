@@ -26,8 +26,27 @@
         "type": "Image",
         "config": {
           "label": "Picture",
-          "constraint": {},
+          "constraint": {
+            "width": 540
+          },
           "thumbnails": []
+        }
+      },
+      "key_skills": {
+        "type": "Group",
+        "config": {
+          "label": "Key Skills",
+          "repeat": true,
+          "fields": {
+            "skill": {
+              "type": "Link",
+              "config": {
+                "label": "Skill",
+                "select": "document",
+                "customtypes": ["skill"]
+              }
+            }
+          }
         }
       },
       "slices": {
