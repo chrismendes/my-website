@@ -1,13 +1,11 @@
 import Image from "next/image";
-import { SiteHeader } from "@/ui/header";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <SiteHeader />
-      <div className="relative flex place-items-center ">
-        <p>Page content</p>
-      </div>
-    </main>
+    <>
+      <p>Page content</p>
+      <p className="font-bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, velit at consequat facilisis, nisl massa ullamcorper augue, at mattis massa tortor sed odio.</p>
+      <p>Aenean scelerisque suscipit consequat. In nec eleifend nisi. Duis libero quam, laoreet vitae lorem at, pulvinar hendrerit nisl. Nulla nulla est, facilisis id efficitur feugiat, mollis ac eros. Curabitur ac nunc lectus. Nunc neque purus, lobortis at suscipit vitae, ultrices nec eros. Proin feugiat malesuada viverra.</p>
+    </>
   );
 }
