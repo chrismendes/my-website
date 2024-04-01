@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={`${fontRoboto.className} ${fontOswald.variable}`}>
         <div className="container mx-auto min-h-screen flex flex-col gap-y-24 p-24 justify-between">
           <SiteHeader />
-          <main className="flex-1">
+          <main className="flex flex-1 w-full items-start">
             {children}
           </main>
           <footer className="border-t border-slate-300 pt-4 text-xs font-sans text-slate-500">

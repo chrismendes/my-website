@@ -18,7 +18,7 @@ export default async function Home() {
   
   return (
     <>
-      <div className="flex gap-x-12 items-center">
+      <div className="flex w-full gap-x-12 items-center self-center">
         <div className="w-3/5">
           <h1 className="mb-6 text-6xl">{content.headline}</h1>
           <PrismicRichText field={content.intro} />
