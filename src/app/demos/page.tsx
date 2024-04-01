@@ -32,12 +32,13 @@ export default async function DemoPage() {
     return notFound();
   }
   const content = page.results[0].data;
-content.demos[1] = {...content.demos[0]};
-content.demos[2] = {...content.demos[0]};
+// content.demos.push({...content.demos[0]});
+// content.demos.push({...content.demos[0]});
 
-console.clear();
-console.log(content.demos[0]?.demo.data);
-console.log(content.demos[0]?.demo.data?.tech_stack);
+// console.clear();
+// console.log(content.demos);
+// console.log(content.demos[0]?.demo.data);
+// console.log(content.demos[0]?.demo.data?.tech_stack);
   
   return (
     <>
@@ -50,7 +51,9 @@ console.log(content.demos[0]?.demo.data?.tech_stack);
             {content.demos?.map(({ demo }, index) => (
               <li className="flex flex-col items-start gap-y-3 min-w-14" key={index}>
                 {demo.data.picture &&
-                  <PrismicNextImage field={demo.data.picture} alt={demo.data.picture.alt} className="shadow-lg mb-4" />
+                  <div className="h-[280px] overflow-hidden shadow-lg mb-4">
+                    <PrismicNextImage field={demo.data.picture} alt={demo.data.picture.alt} />
+                  </div>
                 }
                 <h2>{demo.data.title}</h2>
                 <PrismicRichText field={demo.data.description} />
