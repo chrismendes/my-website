@@ -8,6 +8,12 @@
     @apply text-3xl;
     @apply font-bold;
   }
+  h2 {
+    font-family: var(--font-roboto);
+    @apply text-xl;
+    @apply font-bold;
+    @apply uppercase;
+  }
   p {
     margin-top: 0;
     margin-bottom: 12px;

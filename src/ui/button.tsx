@@ -8,7 +8,7 @@ interface ComponentProps {
 }
 
 const stylePrimary = "bg-accent text-white hover:bg-accent-dark pt-2.5";
-const styleSecondary = "border-accent border-2 text-accent";
+const styleSecondary = "bg-white border-accent border-2 text-accent";
 
 export const Button = ({ label, link, icon, style }: ComponentProps) => {
 
@@ -16,7 +16,7 @@ export const Button = ({ label, link, icon, style }: ComponentProps) => {
   
   return (
     <Link
-      className={`${cn} flex gap-x-2 rounded-3xl px-4 py-2 text-sm font-sans font-medium uppercase leading-normal`}
+      className={`${cn} flex gap-x-2 rounded-3xl px-4 py-2 text-sm font-sans font-medium uppercase leading-normal whitespace-nowrap`}
       href={link}
     >
       {icon}
