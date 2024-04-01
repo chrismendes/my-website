@@ -8,6 +8,12 @@
     @apply text-3xl;
     @apply font-bold;
   }
+    h1:before {
+      content: '<';
+    }
+    h1:after {
+      content: ' />';
+    }
   h2 {
     font-family: var(--font-roboto);
     @apply text-xl;
