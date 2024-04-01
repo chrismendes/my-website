@@ -32,7 +32,7 @@ export default async function Home() {
               {content.key_skills.map(({ tech }, index) => (
                 <li className="flex flex-col items-center justify-center gap-y-3 min-w-14" key={index}>
                   <SkillIcon
-                    image={<PrismicNextImage field={tech.data.icon} />}
+                    image={<PrismicNextImage field={tech.data.icon} alt={tech.data.icon.alt} />}
                     label={tech.data.name}
                   />
                 </li>
@@ -41,7 +41,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="flex flex-1 justify-end">
-          <PrismicNextImage field={content.picture} className="border shadow" width="400" />
+          <PrismicNextImage field={content.picture} alt={content.picture.alt} className="border shadow" width="400" />
         </div>
       </div>
     </>
