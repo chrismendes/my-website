@@ -15,6 +15,9 @@ export const SiteHeader = () => (
       <Link className="py-2 px-3 text-slate-500 hover:text-black" href="/cv">
         CV
       </Link>
+      <Link className="py-2 px-3 text-slate-500 hover:text-black" href="/skills">
+        Skills
+      </Link>
       <Link className="py-2 px-3 text-slate-500 hover:text-black" href="/projects">
         Projects
       </Link>

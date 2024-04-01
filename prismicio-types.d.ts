@@ -7,7 +7,17 @@ type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 /**
  * Item in *Demo → Tech Stack*
  */
-export interface DemoDocumentDataTechStackItem {}
+export interface DemoDocumentDataTechStackItem {
+  /**
+   * Tech field in *Demo → Tech Stack*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo.tech_stack[].tech
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tech: prismic.ContentRelationshipField<"tech">;
+}
 
 /**
  * Content for Demo documents
@@ -56,6 +66,28 @@ interface DemoDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   tech_stack: prismic.GroupField<Simplify<DemoDocumentDataTechStackItem>>;
+
+  /**
+   * GitHub field in *Demo*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo.github
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  github: prismic.LinkField;
+
+  /**
+   * Demo field in *Demo*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo.demo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  demo: prismic.LinkField;
 }
 
 /**
@@ -69,6 +101,108 @@ interface DemoDocumentData {
  */
 export type DemoDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<DemoDocumentData>, "demo", Lang>;
+
+/**
+ * Item in *Demo Page → Demos*
+ */
+export interface DemoPageDocumentDataDemosItem {
+  /**
+   * Demo field in *Demo Page → Demos*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo_page.demos[].demo
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  demo: prismic.ContentRelationshipField<"demo">;
+}
+
+type DemoPageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Demo Page documents
+ */
+interface DemoPageDocumentData {
+  /**
+   * Page Title field in *Demo Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo_page.page_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  page_title: prismic.KeyTextField;
+
+  /**
+   * Demos field in *Demo Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo_page.demos[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  demos: prismic.GroupField<Simplify<DemoPageDocumentDataDemosItem>>;
+
+  /**
+   * Slice Zone field in *Demo Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<DemoPageDocumentDataSlicesSlice> /**
+   * Meta Description field in *Demo Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: demo_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Demo Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: demo_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Demo Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: demo_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Demo Page document from Prismic
+ *
+ * - **API ID**: `demo_page`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DemoPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<DemoPageDocumentData>,
+    "demo_page",
+    Lang
+  >;
 
 /**
  * Item in *Home Page → Key Skills*
@@ -296,6 +430,7 @@ export type TechDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | DemoDocument
+  | DemoPageDocument
   | HomepageDocument
   | PageDocument
   | TechDocument;
@@ -313,6 +448,10 @@ declare module "@prismicio/client" {
       DemoDocument,
       DemoDocumentData,
       DemoDocumentDataTechStackItem,
+      DemoPageDocument,
+      DemoPageDocumentData,
+      DemoPageDocumentDataDemosItem,
+      DemoPageDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataKeySkillsItem,

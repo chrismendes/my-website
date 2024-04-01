@@ -20,8 +20,7 @@ export default async function Home() {
     <>
       <div className="flex gap-x-12 items-center">
         <div className="w-3/5">
-          <h1 className={`mb-6 ${fontRoboto.className} text-6xl font-bold`}>{content.headline}</h1>
-          {/* <h1 className="mb-6">{content.headline}</h1> */}
+          <h1 className="mb-6 text-6xl">{content.headline}</h1>
           <PrismicRichText field={content.intro} />
 
           <div className="flex items-center gap-x-6 mt-12">
@@ -31,9 +30,9 @@ export default async function Home() {
               role="list"
             >
               {content.key_skills.map(({ tech }, index) => (
-                <li className="flex flex-col items-center justify-center gap-y-3 min-w-14">
+                <li className="flex flex-col items-center justify-center gap-y-3 min-w-14" key={index}>
                   <SkillIcon
-                    image={<PrismicNextImage field={tech.data.icon} key={index} />}
+                    image={<PrismicNextImage field={tech.data.icon} />}
                     label={tech.data.name}
                   />
                 </li>
@@ -42,7 +41,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="flex flex-1 justify-end">
-          <PrismicNextImage field={content.picture} className="border framed" width="400" />
+          <PrismicNextImage field={content.picture} className="border shadow" width="400" />
         </div>
       </div>
     </>

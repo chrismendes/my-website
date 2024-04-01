@@ -4,8 +4,9 @@
 
 @layer base {
   h1 {
-    font-family: var(--font-oswald);
-    @apply text-6xl;
+    font-family: var(--font-roboto);
+    @apply text-3xl;
+    @apply font-bold;
   }
   p {
     margin-top: 0;
@@ -15,8 +16,10 @@
 
 @layer components {
   img.framed {
+    @apply border-0;
+    @apply p-4;
     box-shadow:
-      -50px -50px 0 -40px theme("colors.sky.100"),
-      50px 50px 0 -40px theme("colors.sky.100");
+      -50px -50px 0 -44px theme("colors.teal.600"),
+      50px 50px 0 -44px theme("colors.teal.600");
   }
 }

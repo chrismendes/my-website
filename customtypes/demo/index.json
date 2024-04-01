@@ -32,7 +32,9 @@
         "type": "Image",
         "config": {
           "label": "Picture",
-          "constraint": {},
+          "constraint": {
+            "width": 500
+          },
           "thumbnails": []
         }
       },
@@ -41,7 +43,32 @@
         "config": {
           "label": "Tech Stack",
           "repeat": true,
-          "fields": {}
+          "fields": {
+            "tech": {
+              "type": "Link",
+              "config": {
+                "label": "Tech",
+                "select": "document",
+                "customtypes": ["tech"]
+              }
+            }
+          }
+        }
+      },
+      "github": {
+        "type": "Link",
+        "config": {
+          "label": "GitHub",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "demo": {
+        "type": "Link",
+        "config": {
+          "label": "Demo",
+          "placeholder": "",
+          "select": null
         }
       }
     }
