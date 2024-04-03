@@ -20,6 +20,11 @@ export default async function ProjectPage() {
               employer {
                 ...employerFields
               }
+              tech {
+                tech {
+                  ...techFields
+                }
+              }
             }
           }
         }
@@ -33,7 +38,7 @@ export default async function ProjectPage() {
 
 console.clear();
 // console.log(content.projects[0]?.project.data);
-console.log(content.projects[0]?.project.data.employer.data.employer_logo);
+console.log(content.projects[0]?.project.data.tech[0].tech.data);
   
   return (
     <>
@@ -52,23 +57,28 @@ console.log(content.projects[0]?.project.data.employer.data.employer_logo);
                     }
                   </Link>
                 </div>
-                {project.data.employer.data.employer_logo &&
+                {(project.data.employer.data.employer_logo || project.data.logo_override) &&
                   <div className="h-[40px] flex items-center">
                     <PrismicNextImage
-                      field={project.data.employer.data.employer_logo}
-                      alt={project.data.employer.data.employer_logo.alt}
+                      field={project.data.logo_override || project.data.employer.data.employer_logo}
+                      alt={project.data.logo_override?.alt || project.data.employer.data.employer_logo.alt}
                     />
                   </div>
                 }
                 <h2>{project.data.title}</h2>
                 <p>{project.data.intro}</p>
-                {/* {demo.data.tech_stack?.map(({ tech }, index) => (
-                  <SkillIcon
-                    image={<PrismicNextImage field={tech.icon} alt={tech.icon?.alt} key={index} />}
-                    label={tech.name}
-                    key={index}
-                  />
-                ))} */}
+                {(project.data.tech.length > 0) &&
+                  <div className="flex flex-row mb-4">
+                    {project.data.tech?.map(({ tech }, index) => (
+                      <SkillIcon
+                        image={<PrismicNextImage field={tech.data.icon} key={index} height={30} />}
+                        label={tech.data.name}
+                        showLabel={false}
+                        key={index}
+                      />
+                    ))}
+                  </div>
+                }
                 <div className="flex gap-x-4">
                   <Button label="Read More" link={"/"} />
                 </div>

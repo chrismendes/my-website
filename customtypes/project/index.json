@@ -34,6 +34,17 @@
           "customtypes": ["job"]
         }
       },
+      "logo_override": {
+        "type": "Image",
+        "config": {
+          "label": "Logo Override",
+          "constraint": {
+            "height": null,
+            "width": 120
+          },
+          "thumbnails": []
+        }
+      },
       "intro": {
         "type": "Text",
         "config": {

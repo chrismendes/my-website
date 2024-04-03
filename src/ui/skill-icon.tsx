@@ -1,7 +1,7 @@
 interface ComponentProps {
   image: React.ReactNode,
   label: string,
-  showLabel?: boolean | undefined
+  showLabel?: boolean | undefined,
 }
 
 export const SkillIcon = ({ image, label, showLabel }: ComponentProps) => (

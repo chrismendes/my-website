@@ -646,6 +646,17 @@ interface ProjectDocumentData {
   employer: prismic.ContentRelationshipField<"job">;
 
   /**
+   * Logo Override field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.logo_override
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo_override: prismic.ImageField<never>;
+
+  /**
    * Intro field in *Project*
    *
    * - **Field Type**: Text
