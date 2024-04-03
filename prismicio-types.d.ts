@@ -607,6 +607,17 @@ interface ProjectDocumentData {
   title: prismic.KeyTextField;
 
   /**
+   * Date field in *Project*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date: prismic.DateField;
+
+  /**
    * Employer field in *Project*
    *
    * - **Field Type**: Content Relationship
@@ -616,6 +627,17 @@ interface ProjectDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   employer: prismic.ContentRelationshipField<"job">;
+
+  /**
+   * Intro field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.intro
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  intro: prismic.KeyTextField;
 
   /**
    * Description field in *Project*
@@ -692,6 +714,108 @@ export type ProjectDocument<Lang extends string = string> =
   >;
 
 /**
+ * Item in *Project Page → Projects*
+ */
+export interface ProjectPageDocumentDataProjectsItem {
+  /**
+   * Project field in *Project Page → Projects*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_page.projects[].project
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project: prismic.ContentRelationshipField<"project">;
+}
+
+type ProjectPageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Project Page documents
+ */
+interface ProjectPageDocumentData {
+  /**
+   * Page Title field in *Project Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_page.page_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  page_title: prismic.KeyTextField;
+
+  /**
+   * Projects field in *Project Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_page.projects[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  projects: prismic.GroupField<Simplify<ProjectPageDocumentDataProjectsItem>>;
+
+  /**
+   * Slice Zone field in *Project Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProjectPageDocumentDataSlicesSlice> /**
+   * Meta Description field in *Project Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: project_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Project Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Project Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: project_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Project Page document from Prismic
+ *
+ * - **API ID**: `project_page`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ProjectPageDocumentData>,
+    "project_page",
+    Lang
+  >;
+
+/**
  * Content for Tech documents
  */
 interface TechDocumentData {
@@ -737,6 +861,7 @@ export type AllDocumentTypes =
   | JobDocument
   | PageDocument
   | ProjectDocument
+  | ProjectPageDocument
   | TechDocument;
 
 declare module "@prismicio/client" {
@@ -772,6 +897,10 @@ declare module "@prismicio/client" {
       ProjectDocumentDataTechItem,
       ProjectDocumentDataGalleryItem,
       ProjectDocumentDataGalleryMobileItem,
+      ProjectPageDocument,
+      ProjectPageDocumentData,
+      ProjectPageDocumentDataProjectsItem,
+      ProjectPageDocumentDataSlicesSlice,
       TechDocument,
       TechDocumentData,
       AllDocumentTypes,

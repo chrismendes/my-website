@@ -7,11 +7,11 @@ interface ComponentProps {
   style?: "primary" | "secondary";
 }
 
-const stylePrimary = "bg-accent text-white hover:bg-accent-dark pt-2.5";
-const styleSecondary = "bg-white border-accent border-2 text-accent";
 
 export const Button = ({ label, link, icon, style }: ComponentProps) => {
-
+  
+  const stylePrimary = `bg-accent text-white hover:bg-accent-dark ${(icon) ? "pt-2.5" : ""}`;
+  const styleSecondary = "bg-white border-accent border-2 text-accent";
   const cn = (style === "secondary") ? styleSecondary : stylePrimary;
   
   return (

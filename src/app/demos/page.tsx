@@ -47,7 +47,7 @@ export default async function DemoPage() {
           <h1 className={`mb-6`}>{content.page_title}</h1>
         </div>
         <div className="flex w-5/6 self-end bg-neutral-50 p-12">
-          <ul role="list" className="grid grid-cols-2 gap-32">
+          <ul role="list" className="grid grid-cols-2 gap-x-32 gap-y-20">
             {content.demos?.map(({ demo }, index) => (
               <li className="flex flex-col items-start gap-y-3 min-w-14" key={index}>
                 {demo.data.picture &&

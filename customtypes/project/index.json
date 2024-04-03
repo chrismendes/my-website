@@ -19,12 +19,26 @@
           "placeholder": ""
         }
       },
+      "date": {
+        "type": "Date",
+        "config": {
+          "label": "Date",
+          "placeholder": ""
+        }
+      },
       "employer": {
         "type": "Link",
         "config": {
           "label": "Employer",
           "select": "document",
           "customtypes": ["job"]
+        }
+      },
+      "intro": {
+        "type": "Text",
+        "config": {
+          "label": "Intro",
+          "placeholder": ""
         }
       },
       "description": {
