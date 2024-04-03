@@ -415,7 +415,9 @@ interface JobDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  type: prismic.SelectField<"Permanent" | "Contract" | "Spare Time Freelance">;
+  type: prismic.SelectField<
+    "Permanent" | "Contract" | "Spare Time Freelance" | "Volunteering"
+  >;
 
   /**
    * Date Start field in *Job*
@@ -592,6 +594,21 @@ export interface ProjectDocumentDataGalleryMobileItem {
 }
 
 /**
+ * Item in *Project → Gallery (Before)*
+ */
+export interface ProjectDocumentDataGalleryBeforeItem {
+  /**
+   * Picture field in *Project → Gallery (Before)*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.gallery_before[].picture
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  picture: prismic.ImageField<never>;
+}
+
+/**
  * Content for Project documents
  */
 interface ProjectDocumentData {
@@ -683,6 +700,19 @@ interface ProjectDocumentData {
    */
   gallery_mobile: prismic.GroupField<
     Simplify<ProjectDocumentDataGalleryMobileItem>
+  >;
+
+  /**
+   * Gallery (Before) field in *Project*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.gallery_before[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  gallery_before: prismic.GroupField<
+    Simplify<ProjectDocumentDataGalleryBeforeItem>
   >;
 
   /**
@@ -897,6 +927,7 @@ declare module "@prismicio/client" {
       ProjectDocumentDataTechItem,
       ProjectDocumentDataGalleryItem,
       ProjectDocumentDataGalleryMobileItem,
+      ProjectDocumentDataGalleryBeforeItem,
       ProjectPageDocument,
       ProjectPageDocumentData,
       ProjectPageDocumentDataProjectsItem,

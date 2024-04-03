@@ -111,6 +111,25 @@
           }
         }
       },
+      "gallery_before": {
+        "type": "Group",
+        "config": {
+          "label": "Gallery (Before)",
+          "repeat": true,
+          "fields": {
+            "picture": {
+              "type": "Image",
+              "config": {
+                "label": "Picture",
+                "constraint": {
+                  "width": 1200
+                },
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      },
       "link": {
         "type": "Link",
         "config": {

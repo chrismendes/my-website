@@ -45,7 +45,7 @@ console.log(content.projects[0]?.project.data.employer.data.employer_logo);
           <ul role="list" className="grid grid-cols-2 gap-x-32 gap-y-20">
             {content.projects?.map(({ project }, index) => (
               <li className="flex flex-col items-start gap-y-3 min-w-14" key={index}>
-                <div className="h-[216px] overflow-hidden shadow-lg mb-4">
+                <div className="h-[216px] overflow-hidden shadow-lg mb-4 flex items-center">
                   <Link href="/">
                     {project.data.gallery[0] &&
                       <PrismicNextImage field={project.data.gallery[0].picture} alt={project.data.gallery[0].picture.alt} />

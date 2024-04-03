@@ -51,7 +51,7 @@ export default async function DemoPage() {
             {content.demos?.map(({ demo }, index) => (
               <li className="flex flex-col items-start gap-y-3 min-w-14" key={index}>
                 {demo.data.picture &&
-                  <div className="h-[280px] overflow-hidden shadow-lg mb-4">
+                  <div className="h-[280px] overflow-hidden shadow-lg mb-4 flex items-center">
                     <PrismicNextImage field={demo.data.picture} alt={demo.data.picture.alt} />
                   </div>
                 }
@@ -65,8 +65,12 @@ export default async function DemoPage() {
                   />
                 ))} */}
                 <div className="flex gap-x-4">
-                  <Button label="View Demo" link={"/"} icon={<IconPlay />} />
-                  <Button label="Source Code" link={"/"} style="secondary" icon={<IconGitHub />} />
+                  {demo.data.demo &&
+                    <Button label="View Demo" link={demo.data.demo.url} icon={<IconPlay />} newWindow={true} />
+                  }
+                  {demo.data.github &&
+                    <Button label="Source Code" link={demo.data.github.url} style="secondary" icon={<IconGitHub />} newWindow={true} />
+                  }
                 </div>
               </li>
             ))}

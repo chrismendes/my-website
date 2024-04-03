@@ -50,7 +50,12 @@
         "config": {
           "label": "Type",
           "placeholder": "",
-          "options": ["Permanent", "Contract", "Spare Time Freelance"]
+          "options": [
+            "Permanent",
+            "Contract",
+            "Spare Time Freelance",
+            "Volunteering"
+          ]
         }
       },
       "date_start": {
