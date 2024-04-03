@@ -328,6 +328,163 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Job → Tech*
+ */
+export interface JobDocumentDataTechItem {
+  /**
+   * Tech field in *Job → Tech*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.tech[].tech
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tech: prismic.ContentRelationshipField<"tech">;
+}
+
+/**
+ * Item in *Job → Projects*
+ */
+export interface JobDocumentDataProjectsItem {
+  /**
+   * Project field in *Job → Projects*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.projects[].project
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project: prismic.ContentRelationshipField<"project">;
+}
+
+/**
+ * Content for Job documents
+ */
+interface JobDocumentData {
+  /**
+   * Employer field in *Job*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.employer
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  employer: prismic.KeyTextField;
+
+  /**
+   * Employer Logo field in *Job*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.employer_logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  employer_logo: prismic.ImageField<never>;
+
+  /**
+   * Employer Website field in *Job*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.employer_website
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  employer_website: prismic.LinkField;
+
+  /**
+   * Job Title field in *Job*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.job_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  job_title: prismic.KeyTextField;
+
+  /**
+   * Type field in *Job*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.type
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  type: prismic.SelectField<"Permanent" | "Contract" | "Spare Time Freelance">;
+
+  /**
+   * Date Start field in *Job*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.date_start
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date_start: prismic.DateField;
+
+  /**
+   * Date End field in *Job*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.date_end
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date_end: prismic.DateField;
+
+  /**
+   * Description field in *Job*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Tech field in *Job*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.tech[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tech: prismic.GroupField<Simplify<JobDocumentDataTechItem>>;
+
+  /**
+   * Projects field in *Job*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.projects[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  projects: prismic.GroupField<Simplify<JobDocumentDataProjectsItem>>;
+}
+
+/**
+ * Job document from Prismic
+ *
+ * - **API ID**: `job`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type JobDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<JobDocumentData>, "job", Lang>;
+
 type PageDocumentDataSlicesSlice = never;
 
 /**
@@ -390,6 +547,151 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 /**
+ * Item in *Project → Tech*
+ */
+export interface ProjectDocumentDataTechItem {
+  /**
+   * Tech field in *Project → Tech*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.tech[].tech
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tech: prismic.ContentRelationshipField<"tech">;
+}
+
+/**
+ * Item in *Project → Gallery (Desktop)*
+ */
+export interface ProjectDocumentDataGalleryItem {
+  /**
+   * Picture field in *Project → Gallery (Desktop)*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.gallery[].picture
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  picture: prismic.ImageField<"large">;
+}
+
+/**
+ * Item in *Project → Gallery (Mobile)*
+ */
+export interface ProjectDocumentDataGalleryMobileItem {
+  /**
+   * Picture field in *Project → Gallery (Mobile)*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.gallery_mobile[].picture
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  picture: prismic.ImageField<never>;
+}
+
+/**
+ * Content for Project documents
+ */
+interface ProjectDocumentData {
+  /**
+   * Title field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Employer field in *Project*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.employer
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  employer: prismic.ContentRelationshipField<"job">;
+
+  /**
+   * Description field in *Project*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Tech field in *Project*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.tech[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tech: prismic.GroupField<Simplify<ProjectDocumentDataTechItem>>;
+
+  /**
+   * Gallery (Desktop) field in *Project*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.gallery[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  gallery: prismic.GroupField<Simplify<ProjectDocumentDataGalleryItem>>;
+
+  /**
+   * Gallery (Mobile) field in *Project*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.gallery_mobile[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  gallery_mobile: prismic.GroupField<
+    Simplify<ProjectDocumentDataGalleryMobileItem>
+  >;
+
+  /**
+   * Link field in *Project*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Project document from Prismic
+ *
+ * - **API ID**: `project`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProjectDocumentData>,
+    "project",
+    Lang
+  >;
+
+/**
  * Content for Tech documents
  */
 interface TechDocumentData {
@@ -432,7 +734,9 @@ export type AllDocumentTypes =
   | DemoDocument
   | DemoPageDocument
   | HomepageDocument
+  | JobDocument
   | PageDocument
+  | ProjectDocument
   | TechDocument;
 
 declare module "@prismicio/client" {
@@ -456,9 +760,18 @@ declare module "@prismicio/client" {
       HomepageDocumentData,
       HomepageDocumentDataKeySkillsItem,
       HomepageDocumentDataSlicesSlice,
+      JobDocument,
+      JobDocumentData,
+      JobDocumentDataTechItem,
+      JobDocumentDataProjectsItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      ProjectDocument,
+      ProjectDocumentData,
+      ProjectDocumentDataTechItem,
+      ProjectDocumentDataGalleryItem,
+      ProjectDocumentDataGalleryMobileItem,
       TechDocument,
       TechDocumentData,
       AllDocumentTypes,
