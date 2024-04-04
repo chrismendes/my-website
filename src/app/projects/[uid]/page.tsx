@@ -1,11 +1,8 @@
-import Link from "next/link";
 import { prismic } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
-import Image from "next/image";
 import { PrismicNextImage } from "@prismicio/next";
 import { notFound } from "next/navigation";
-import { Button, SkillIcon } from "@/ui";
-
+import { SkillIcon } from "@/ui";
 import {
   Carousel,
   CarouselContent,
@@ -13,7 +10,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/ui/carousel";
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
+import { Monitor, Smartphone } from "lucide-react";
 
 interface PageProps {
   params: {
@@ -28,6 +26,9 @@ export default async function ProjectPage({ params: { uid } }: PageProps) {
       {
         project {
           ...projectFields
+          employer {
+            ...employerFields
+          }
           tech {
             tech {
               ...techFields
@@ -41,31 +42,81 @@ export default async function ProjectPage({ params: { uid } }: PageProps) {
     return notFound();
   }
   const project = content.data;
+  const employer = content.data.employer.data;
 
 console.clear();
-console.log(content);
+console.log(project);
 // console.log(content.projects[0]?.project.data.tech[0].tech.data);
   
   return (
-    <>
-      <div className="flex flex-row gap-x-12 -mt-10">
-        <div className="flex w-1/6 pt-10">
-          <h1 className={`mb-6`}>{content.data.title}</h1>
+    <div className="flex flex-col">
+      <h1 className="mb-6 text-center">{project.title}</h1>
+      {employer.employer_logo &&
+        <PrismicNextImage field={employer.employer_logo} className="mx-auto mt-2" />
+      }
+      {project.intro &&
+        <p className="text-lg mt-20 max-w-4xl mx-auto">{project.intro}</p>
+      }
+
+      <Tabs defaultValue="desktop" className="mt-20">
+        <div className="flex">
+          <TabsList className="mx-auto mb-2">
+            <TabsTrigger value="desktop">
+              <Monitor size={20} className="mr-2" />
+              Desktop View
+            </TabsTrigger>
+            <TabsTrigger value="mobile">
+              <Smartphone size={20} className="mr-2" />
+              Mobile View
+            </TabsTrigger>
+          </TabsList>
         </div>
-        <div className="flex w-5/6 self-end bg-neutral-50 p-12">
+        <TabsContent value="desktop">
           <Carousel>
             <CarouselContent>
               {project.gallery.map(({ picture }, index) => (
                 <CarouselItem key={index}>
-                  <PrismicNextImage field={picture.large} />
+                  <PrismicNextImage field={picture.large} className="w-auto m-auto" />
                 </CarouselItem>
               ))}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
           </Carousel>
+        </TabsContent>
+        <TabsContent value="mobile">
+          <Carousel>
+            <CarouselContent>
+              {project.gallery_mobile.map(({ picture }, index) => (
+                <CarouselItem key={index}>
+                  <PrismicNextImage field={picture} className="w-auto m-auto" />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </TabsContent>
+      </Tabs>
+
+      <div className="flex mt-28 gap-x-12">
+        <div className="w-3/5 text-lg">
+          <PrismicRichText field={project.description} />
+        </div>
+        <div className="w-2/5">
+          <ul className="grid grid-cols-4 gap-y-8">
+            {project.tech.map(({ tech }, index) => (
+              <li className="flex flex-col items-center justify-center gap-y-3 min-w-14" key={index}>
+                <SkillIcon
+                  image={<PrismicNextImage field={tech.data.icon} />}
+                  label={tech.data.name}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-    </>
+
+    </div>
   );
 }
