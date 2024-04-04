@@ -1,28 +1,40 @@
-import Link from "next/link";
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-interface ComponentProps {
-  label: string;
-  link: string;
-  newWindow?: boolean;
-  icon?: React.ReactNode;
-  style?: "primary" | "secondary";
+import { cn } from "@/utils";
+
+const buttonVariants = cva(
+  "inline-flex gap-x-2 rounded-3xl px-4 py-2 text-sm font-sans font-medium uppercase leading-normal whitespace-nowrap",
+  {
+    variants: {
+      variant: {
+        primary: "bg-accent text-white hover:bg-accent-dark",
+        secondary: "bg-white border-accent border-2 text-accent",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+    },
+  }
+);
+
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
 }
 
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Button.displayName = "Button";
 
-export const Button = ({ label, link, newWindow, icon, style }: ComponentProps) => {
-  
-  const stylePrimary = `bg-accent text-white hover:bg-accent-dark ${(icon) ? "pt-2.5" : ""}`;
-  const styleSecondary = "bg-white border-accent border-2 text-accent";
-  const cn = (style === "secondary") ? styleSecondary : stylePrimary;
-  
-  return (
-    <Link
-      className={`${cn} flex gap-x-2 rounded-3xl px-4 py-2 text-sm font-sans font-medium uppercase leading-normal whitespace-nowrap`}
-      href={link}
-      target={(newWindow) ? "_blank" : "_self"}
-    >
-      {icon}
-      {label}
-    </Link>
-  );
-};
+export { Button, buttonVariants };

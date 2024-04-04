@@ -6,6 +6,15 @@ import { PrismicNextImage } from "@prismicio/next";
 import { notFound } from "next/navigation";
 import { Button, SkillIcon } from "@/ui";
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/ui/carousel";
+
+
 interface PageProps {
   params: {
     uid: string
@@ -43,45 +52,19 @@ console.log(content);
         <div className="flex w-1/6 pt-10">
           <h1 className={`mb-6`}>{content.data.title}</h1>
         </div>
-        {/* <div className="flex w-5/6 self-end bg-neutral-50 p-12">
-          <ul role="list" className="grid grid-cols-2 gap-x-32 gap-y-20">
-            {content.projects?.map(({ project }, index) => (
-              <li className="flex flex-col items-start gap-y-3 min-w-14" key={index}>
-                <div className="h-[216px] overflow-hidden shadow-lg mb-4 flex items-center">
-                  <Link href="/">
-                    {project.data.gallery[0] &&
-                      <PrismicNextImage field={project.data.gallery[0].picture} />
-                    }
-                  </Link>
-                </div>
-                {(project.data.employer.data.employer_logo || project.data.logo_override) &&
-                  <div className="h-[40px] flex items-center">
-                    <PrismicNextImage
-                      field={project.data.logo_override || project.data.employer.data.employer_logo}
-                    />
-                  </div>
-                }
-                <h2>{project.data.title}</h2>
-                <p>{project.data.intro}</p>
-                {(project.data.tech.length > 0) &&
-                  <div className="flex flex-row mb-4">
-                    {project.data.tech?.filter(({ tech }) => !tech.data.nondistinct).map(({ tech }, index) => (
-                      <SkillIcon
-                        image={<PrismicNextImage field={tech.data.icon} title={tech.data.name} key={index} height={30} />}
-                        label={tech.data.name}
-                        showLabel={false}
-                        key={index}
-                      />
-                    ))}
-                  </div>
-                }
-                <div className="flex gap-x-4">
-                  <Button label="Read More" link={"/"} />
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div> */}
+        <div className="flex w-5/6 self-end bg-neutral-50 p-12">
+          <Carousel>
+            <CarouselContent>
+              {project.gallery.map(({ picture }, index) => (
+                <CarouselItem key={index}>
+                  <PrismicNextImage field={picture.large} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
       </div>
     </>
   );

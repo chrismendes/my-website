@@ -1,6 +1,6 @@
 import { prismic } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
-import Image from "next/image";
+import Link from "next/link";
 import { PrismicNextImage } from "@prismicio/next";
 import { notFound } from "next/navigation";
 import { Button, SkillIcon } from "@/ui";
@@ -66,10 +66,20 @@ export default async function DemoPage() {
                 ))} */}
                 <div className="flex gap-x-4">
                   {demo.data.demo &&
-                    <Button label="View Demo" link={demo.data.demo.url} icon={<IconPlay />} newWindow={true} />
+                    <Button asChild>
+                      <Link href={demo.data.demo.url} target="_blank">
+                        <IconPlay />
+                        View Demo
+                      </Link>
+                    </Button>
                   }
                   {demo.data.github &&
-                    <Button label="Source Code" link={demo.data.github.url} style="secondary" icon={<IconGitHub />} newWindow={true} />
+                    <Button variant="secondary" asChild>
+                      <Link href={demo.data.github.url} target="_blank">
+                        <IconGitHub />
+                        Source Code
+                      </Link>
+                    </Button>
                   }
                 </div>
               </li>
