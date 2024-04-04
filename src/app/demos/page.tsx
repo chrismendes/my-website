@@ -52,14 +52,14 @@ export default async function DemoPage() {
               <li className="flex flex-col items-start gap-y-3 min-w-14" key={index}>
                 {demo.data.picture &&
                   <div className="h-[280px] overflow-hidden shadow-lg mb-4 flex items-center">
-                    <PrismicNextImage field={demo.data.picture} alt={demo.data.picture.alt} />
+                    <PrismicNextImage field={demo.data.picture} />
                   </div>
                 }
                 <h2>{demo.data.title}</h2>
                 <PrismicRichText field={demo.data.description} />
                 {/* {demo.data.tech_stack?.map(({ tech }, index) => (
                   <SkillIcon
-                    image={<PrismicNextImage field={tech.icon} alt={tech.icon?.alt} key={index} />}
+                    image={<PrismicNextImage field={tech.icon} key={index} />}
                     label={tech.name}
                     key={index}
                   />

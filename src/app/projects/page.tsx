@@ -53,7 +53,7 @@ console.log(content.projects[0]?.project.data.tech[0].tech.data);
                 <div className="h-[216px] overflow-hidden shadow-lg mb-4 flex items-center">
                   <Link href="/">
                     {project.data.gallery[0] &&
-                      <PrismicNextImage field={project.data.gallery[0].picture} alt={project.data.gallery[0].picture.alt} />
+                      <PrismicNextImage field={project.data.gallery[0].picture} />
                     }
                   </Link>
                 </div>
@@ -61,7 +61,6 @@ console.log(content.projects[0]?.project.data.tech[0].tech.data);
                   <div className="h-[40px] flex items-center">
                     <PrismicNextImage
                       field={project.data.logo_override || project.data.employer.data.employer_logo}
-                      alt={project.data.logo_override?.alt || project.data.employer.data.employer_logo.alt}
                     />
                   </div>
                 }
