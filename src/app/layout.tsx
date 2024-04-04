@@ -28,10 +28,10 @@ export default function RootLayout({
           <main className="flex flex-1 w-full items-start">
             {children}
           </main>
-          <footer className="border-t border-slate-300 pt-4 text-xs font-sans text-slate-500">
-            &copy; 2024 Christopher Mendes
-          </footer>
         </div>
+        <footer className="border-t border-gray-100 bg-gray-500 p-6 text-xs font-sans text-white text-center">
+          &copy; 2024 Christopher Mendes
+        </footer>
         <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
