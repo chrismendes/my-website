@@ -51,7 +51,7 @@ console.log(content.projects[0]?.project.data.tech[0].tech.data);
             {content.projects?.map(({ project }, index) => (
               <li className="flex flex-col items-start gap-y-3 min-w-14" key={index}>
                 <div className="h-[216px] overflow-hidden shadow-lg mb-4 flex items-center">
-                  <Link href="/">
+                  <Link href={"/projects/" + project.data.uid}>
                     {project.data.gallery[0] &&
                       <PrismicNextImage field={project.data.gallery[0].picture} />
                     }
@@ -79,7 +79,9 @@ console.log(content.projects[0]?.project.data.tech[0].tech.data);
                   </div>
                 }
                 <div className="flex gap-x-4">
-                  <Button label="Read More" link={"/"} />
+                  <Button asChild>
+                    <Link href={"/projects/" + project.data.uid}>Read More</Link>
+                  </Button>
                 </div>
               </li>
             ))}
