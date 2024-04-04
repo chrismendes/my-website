@@ -29,6 +29,15 @@
           },
           "thumbnails": []
         }
+      },
+      "nondistinct": {
+        "type": "Boolean",
+        "config": {
+          "label": "Non-Distinct",
+          "placeholder_false": "No",
+          "placeholder_true": "Yes",
+          "default_value": false
+        }
       }
     }
   }

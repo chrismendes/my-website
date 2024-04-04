@@ -68,7 +68,7 @@ console.log(content.projects[0]?.project.data.tech[0].tech.data);
                 <p>{project.data.intro}</p>
                 {(project.data.tech.length > 0) &&
                   <div className="flex flex-row mb-4">
-                    {project.data.tech?.map(({ tech }, index) => (
+                    {project.data.tech?.filter(({ tech }) => !tech.data.nondistinct).map(({ tech }, index) => (
                       <SkillIcon
                         image={<PrismicNextImage field={tech.data.icon} key={index} height={30} />}
                         label={tech.data.name}

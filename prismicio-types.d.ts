@@ -881,6 +881,18 @@ interface TechDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   icon: prismic.ImageField<never>;
+
+  /**
+   * Non-Distinct field in *Tech*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tech.nondistinct
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  nondistinct: prismic.BooleanField;
 }
 
 /**
