@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { prismic } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
@@ -11,7 +12,7 @@ import {
   CarouselPrevious,
 } from "@/ui/carousel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
-import { Monitor, Smartphone } from "lucide-react";
+import { Monitor, Smartphone, ArrowLeft } from "lucide-react";
 
 interface PageProps {
   params: {
@@ -50,6 +51,10 @@ console.log(project);
   
   return (
     <div className="flex flex-col">
+      <Link href="/projects" className="mb-6 flex gap-x-2">
+        <ArrowLeft />Back
+      </Link>
+
       <h1 className="mb-6 text-center">{project.title}</h1>
       {employer.employer_logo &&
         <PrismicNextImage field={employer.employer_logo} className="mx-auto mt-2" />

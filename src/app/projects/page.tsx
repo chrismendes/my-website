@@ -42,7 +42,7 @@ console.log(content.projects[0]?.project.data.tech[0].tech.data);
   
   return (
     <>
-      <div className="flex flex-row gap-x-12 -mt-10">
+      <div className="flex flex-row gap-x-12">
         <div className="flex w-1/6 pt-10">
           <h1 className={`mb-6`}>{content.page_title}</h1>
         </div>

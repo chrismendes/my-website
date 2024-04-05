@@ -9,12 +9,6 @@
     @apply font-bold;
     @apply text-accent;
   }
-    /* h1:before {
-      content: '<';
-    }
-    h1:after {
-      content: ' />';
-    } */
   h2 {
     font-family: var(--font-roboto);
     @apply text-xl;
@@ -24,6 +18,9 @@
   p {
     margin-top: 0;
     margin-bottom: 12px;
+  }
+  a:hover {
+    @apply text-accent;
   }
 }
 
