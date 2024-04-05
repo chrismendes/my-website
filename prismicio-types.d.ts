@@ -5,6 +5,138 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 /**
+ * Item in *CV → Languages*
+ */
+export interface CvDocumentDataLanguagesItem {
+  /**
+   * Lang field in *CV → Languages*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv.languages[].lang
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  lang: prismic.ContentRelationshipField<"tech">;
+}
+
+/**
+ * Item in *CV → Technologies*
+ */
+export interface CvDocumentDataTechnologiesItem {
+  /**
+   * Tech field in *CV → Technologies*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv.technologies[].tech
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tech: prismic.ContentRelationshipField<"tech">;
+}
+
+/**
+ * Item in *CV → Jobs*
+ */
+export interface CvDocumentDataJobsItem {
+  /**
+   * Job field in *CV → Jobs*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv.jobs[].job
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  job: prismic.ContentRelationshipField<"job">;
+}
+
+/**
+ * Item in *CV → Education*
+ */
+export interface CvDocumentDataEducationItem {
+  /**
+   * Edu field in *CV → Education*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv.education[].edu
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  edu: prismic.ContentRelationshipField<"education">;
+}
+
+/**
+ * Content for CV documents
+ */
+interface CvDocumentData {
+  /**
+   * Summary field in *CV*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv.summary
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  summary: prismic.RichTextField;
+
+  /**
+   * Languages field in *CV*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv.languages[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  languages: prismic.GroupField<Simplify<CvDocumentDataLanguagesItem>>;
+
+  /**
+   * Technologies field in *CV*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv.technologies[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  technologies: prismic.GroupField<Simplify<CvDocumentDataTechnologiesItem>>;
+
+  /**
+   * Jobs field in *CV*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv.jobs[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  jobs: prismic.GroupField<Simplify<CvDocumentDataJobsItem>>;
+
+  /**
+   * Education field in *CV*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv.education[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  education: prismic.GroupField<Simplify<CvDocumentDataEducationItem>>;
+}
+
+/**
+ * CV document from Prismic
+ *
+ * - **API ID**: `cv`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CvDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<CvDocumentData>, "cv", Lang>;
+
+/**
  * Item in *Demo → Tech Stack*
  */
 export interface DemoDocumentDataTechStackItem {
@@ -201,6 +333,93 @@ export type DemoPageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<DemoPageDocumentData>,
     "demo_page",
+    Lang
+  >;
+
+/**
+ * Content for Education documents
+ */
+interface EducationDocumentData {
+  /**
+   * Degree field in *Education*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: education.degree
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  degree: prismic.KeyTextField;
+
+  /**
+   * Institution field in *Education*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: education.institution
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  institution: prismic.KeyTextField;
+
+  /**
+   * Institution Logo field in *Education*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: education.institution_logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  institution_logo: prismic.ImageField<never>;
+
+  /**
+   * Date From field in *Education*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: education.date_from
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date_from: prismic.DateField;
+
+  /**
+   * Date To field in *Education*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: education.date_to
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date_to: prismic.DateField;
+
+  /**
+   * Description field in *Education*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: education.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Education document from Prismic
+ *
+ * - **API ID**: `education`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EducationDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<EducationDocumentData>,
+    "education",
     Lang
   >;
 
@@ -908,8 +1127,10 @@ export type TechDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<TechDocumentData>, "tech", Lang>;
 
 export type AllDocumentTypes =
+  | CvDocument
   | DemoDocument
   | DemoPageDocument
+  | EducationDocument
   | HomepageDocument
   | JobDocument
   | PageDocument
@@ -927,6 +1148,12 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      CvDocument,
+      CvDocumentData,
+      CvDocumentDataLanguagesItem,
+      CvDocumentDataTechnologiesItem,
+      CvDocumentDataJobsItem,
+      CvDocumentDataEducationItem,
       DemoDocument,
       DemoDocumentData,
       DemoDocumentDataTechStackItem,
@@ -934,6 +1161,8 @@ declare module "@prismicio/client" {
       DemoPageDocumentData,
       DemoPageDocumentDataDemosItem,
       DemoPageDocumentDataSlicesSlice,
+      EducationDocument,
+      EducationDocumentData,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataKeySkillsItem,

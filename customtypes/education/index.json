@@ -1,0 +1,65 @@
+{
+  "format": "custom",
+  "id": "education",
+  "label": "Education",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "degree": {
+        "type": "Text",
+        "config": {
+          "label": "Degree",
+          "placeholder": ""
+        }
+      },
+      "institution": {
+        "type": "Text",
+        "config": {
+          "label": "Institution",
+          "placeholder": ""
+        }
+      },
+      "institution_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Institution Logo",
+          "constraint": {
+            "height": 120,
+            "width": ""
+          },
+          "thumbnails": []
+        }
+      },
+      "date_from": {
+        "type": "Date",
+        "config": {
+          "label": "Date From",
+          "placeholder": ""
+        }
+      },
+      "date_to": {
+        "type": "Date",
+        "config": {
+          "label": "Date To",
+          "placeholder": ""
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      }
+    }
+  }
+}

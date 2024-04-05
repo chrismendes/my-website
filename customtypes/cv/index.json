@@ -1,0 +1,88 @@
+{
+  "format": "custom",
+  "id": "cv",
+  "label": "CV",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "summary": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Summary",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "languages": {
+        "type": "Group",
+        "config": {
+          "label": "Languages",
+          "repeat": true,
+          "fields": {
+            "lang": {
+              "type": "Link",
+              "config": {
+                "label": "Lang",
+                "select": "document",
+                "customtypes": ["tech"]
+              }
+            }
+          }
+        }
+      },
+      "technologies": {
+        "type": "Group",
+        "config": {
+          "label": "Technologies",
+          "repeat": true,
+          "fields": {
+            "tech": {
+              "type": "Link",
+              "config": {
+                "label": "Tech",
+                "select": "document",
+                "customtypes": ["tech"]
+              }
+            }
+          }
+        }
+      },
+      "jobs": {
+        "type": "Group",
+        "config": {
+          "label": "Jobs",
+          "repeat": true,
+          "fields": {
+            "job": {
+              "type": "Link",
+              "config": {
+                "label": "Job",
+                "select": "document",
+                "customtypes": ["job"]
+              }
+            }
+          }
+        }
+      },
+      "education": {
+        "type": "Group",
+        "config": {
+          "label": "Education",
+          "repeat": true,
+          "fields": {
+            "edu": {
+              "type": "Link",
+              "config": {
+                "label": "Edu",
+                "select": "document",
+                "customtypes": ["education"]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
