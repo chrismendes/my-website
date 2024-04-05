@@ -4,137 +4,70 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type CvPageDocumentDataSlicesSlice = never;
+
 /**
- * Item in *CV → Languages*
+ * Content for CV Page documents
  */
-export interface CvDocumentDataLanguagesItem {
+interface CvPageDocumentData {
   /**
-   * Lang field in *CV → Languages*
+   * Slice Zone field in *CV Page*
    *
-   * - **Field Type**: Content Relationship
+   * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: cv.languages[].lang
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: cv_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  lang: prismic.ContentRelationshipField<"tech">;
+  slices: prismic.SliceZone<CvPageDocumentDataSlicesSlice> /**
+   * Meta Description field in *CV Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: cv_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *CV Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *CV Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: cv_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
 }
 
 /**
- * Item in *CV → Technologies*
- */
-export interface CvDocumentDataTechnologiesItem {
-  /**
-   * Tech field in *CV → Technologies*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cv.technologies[].tech
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  tech: prismic.ContentRelationshipField<"tech">;
-}
-
-/**
- * Item in *CV → Jobs*
- */
-export interface CvDocumentDataJobsItem {
-  /**
-   * Job field in *CV → Jobs*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cv.jobs[].job
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  job: prismic.ContentRelationshipField<"job">;
-}
-
-/**
- * Item in *CV → Education*
- */
-export interface CvDocumentDataEducationItem {
-  /**
-   * Edu field in *CV → Education*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cv.education[].edu
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  edu: prismic.ContentRelationshipField<"education">;
-}
-
-/**
- * Content for CV documents
- */
-interface CvDocumentData {
-  /**
-   * Summary field in *CV*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cv.summary
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  summary: prismic.RichTextField;
-
-  /**
-   * Languages field in *CV*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cv.languages[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  languages: prismic.GroupField<Simplify<CvDocumentDataLanguagesItem>>;
-
-  /**
-   * Technologies field in *CV*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cv.technologies[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  technologies: prismic.GroupField<Simplify<CvDocumentDataTechnologiesItem>>;
-
-  /**
-   * Jobs field in *CV*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cv.jobs[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  jobs: prismic.GroupField<Simplify<CvDocumentDataJobsItem>>;
-
-  /**
-   * Education field in *CV*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cv.education[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  education: prismic.GroupField<Simplify<CvDocumentDataEducationItem>>;
-}
-
-/**
- * CV document from Prismic
+ * CV Page document from Prismic
  *
- * - **API ID**: `cv`
+ * - **API ID**: `cv_page`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type CvDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<Simplify<CvDocumentData>, "cv", Lang>;
+export type CvPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<CvPageDocumentData>,
+    "cv_page",
+    Lang
+  >;
 
 /**
  * Item in *Demo → Tech Stack*
@@ -1127,7 +1060,7 @@ export type TechDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<TechDocumentData>, "tech", Lang>;
 
 export type AllDocumentTypes =
-  | CvDocument
+  | CvPageDocument
   | DemoDocument
   | DemoPageDocument
   | EducationDocument
@@ -1148,12 +1081,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      CvDocument,
-      CvDocumentData,
-      CvDocumentDataLanguagesItem,
-      CvDocumentDataTechnologiesItem,
-      CvDocumentDataJobsItem,
-      CvDocumentDataEducationItem,
+      CvPageDocument,
+      CvPageDocumentData,
+      CvPageDocumentDataSlicesSlice,
       DemoDocument,
       DemoDocumentData,
       DemoDocumentDataTechStackItem,

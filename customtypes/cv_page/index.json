@@ -1,7 +1,7 @@
 {
-  "format": "custom",
-  "id": "cv",
-  "label": "CV",
+  "format": "page",
+  "id": "cv_page",
+  "label": "CV Page",
   "repeatable": false,
   "status": true,
   "json": {
@@ -81,6 +81,13 @@
               }
             }
           }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
         }
       }
     }
