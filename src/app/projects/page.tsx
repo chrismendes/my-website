@@ -9,7 +9,6 @@ import { Button, SkillIcon } from "@/ui";
 export default async function ProjectPage() {
 
   const page = await prismic.getByType("project_page", {
-    // fetchLinks: ["project.title", "project.intro", "project.description", "project.gallery", "project.employer", "project.employer.employer_logo"],
     graphQuery: `
       {
         project_page {
@@ -35,10 +34,6 @@ export default async function ProjectPage() {
     return notFound();
   }
   const content = page.results[0].data;
-
-console.clear();
-// console.log(content.projects[0]?.project.data);
-console.log(content.projects[0]?.project.data.tech[0].tech.data);
   
   return (
     <>

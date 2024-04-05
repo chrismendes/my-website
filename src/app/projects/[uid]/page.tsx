@@ -44,10 +44,6 @@ export default async function ProjectPage({ params: { uid } }: PageProps) {
   }
   const project = content.data;
   const employer = content.data.employer.data;
-
-console.clear();
-console.log(project);
-// console.log(content.projects[0]?.project.data.tech[0].tech.data);
   
   return (
     <div className="flex flex-col">

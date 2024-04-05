@@ -9,7 +9,6 @@ import { IconPlay, IconGitHub } from "@/ui/icons";
 export default async function DemoPage() {
 
   const page = await prismic.getByType("demo_page", {
-    // fetchLinks: ["demo.title", "demo.description", "demo.picture", "demo.github", "demo.tech_stack"],
     graphQuery: `
       {
         demo_page {
@@ -32,13 +31,6 @@ export default async function DemoPage() {
     return notFound();
   }
   const content = page.results[0].data;
-// content.demos.push({...content.demos[0]});
-// content.demos.push({...content.demos[0]});
-
-// console.clear();
-// console.log(content.demos);
-// console.log(content.demos[0]?.demo.data);
-// console.log(content.demos[0]?.demo.data?.tech_stack);
   
   return (
     <div className="flex flex-row gap-x-12">
