@@ -47,40 +47,42 @@ export default async function DemoPage() {
           <h1 className={`mb-6`}>{content.page_title}</h1>
         </div>
         <div className="flex w-5/6 self-end bg-neutral-50 p-12">
-          <ul role="list" className="grid grid-cols-2 gap-x-32 gap-y-20">
+          <ul role="list" className="flex flex-col gap-y-12">
             {content.demos?.map(({ demo }, index) => (
-              <li className="flex flex-col items-start gap-y-3 min-w-14" key={index}>
+              <li className="flex flex-row gap-x-14 items-center" key={index}>
                 {demo.data.picture &&
-                  <div className="h-[280px] overflow-hidden shadow-lg mb-4 flex items-center">
+                  <div className="w-2/5 h-[240px] overflow-hidden shadow-lg mb-4 flex items-center">
                     <PrismicNextImage field={demo.data.picture} />
                   </div>
                 }
-                <h2>{demo.data.title}</h2>
-                <PrismicRichText field={demo.data.description} />
-                {/* {demo.data.tech_stack?.map(({ tech }, index) => (
-                  <SkillIcon
-                    image={<PrismicNextImage field={tech.icon} key={index} />}
-                    label={tech.name}
-                    key={index}
-                  />
-                ))} */}
-                <div className="flex gap-x-4">
-                  {demo.data.demo &&
-                    <Button asChild>
-                      <Link href={demo.data.demo.url} target="_blank">
-                        <IconPlay />
-                        View Demo
-                      </Link>
-                    </Button>
-                  }
-                  {demo.data.github &&
-                    <Button variant="secondary" asChild>
-                      <Link href={demo.data.github.url} target="_blank">
-                        <IconGitHub />
-                        Source Code
-                      </Link>
-                    </Button>
-                  }
+                <div className="w-3/5 flex flex-col gap-y-4">
+                  <h2>{demo.data.title}</h2>
+                  <PrismicRichText field={demo.data.description} />
+                  {/* {demo.data.tech_stack?.map(({ tech }, index) => (
+                    <SkillIcon
+                      image={<PrismicNextImage field={tech.icon} key={index} />}
+                      label={tech.name}
+                      key={index}
+                    />
+                  ))} */}
+                  <div className="flex gap-x-4">
+                    {demo.data.demo &&
+                      <Button asChild>
+                        <Link href={demo.data.demo.url} target="_blank">
+                          <IconPlay />
+                          View Demo
+                        </Link>
+                      </Button>
+                    }
+                    {demo.data.github &&
+                      <Button variant="secondary" asChild>
+                        <Link href={demo.data.github.url} target="_blank">
+                          <IconGitHub />
+                          Source Code
+                        </Link>
+                      </Button>
+                    }
+                  </div>
                 </div>
               </li>
             ))}
