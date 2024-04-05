@@ -18,7 +18,7 @@ export default async function Home() {
   
   return (
     <>
-      <div className="flex w-full gap-x-12 items-center self-center">
+      <div className="flex w-full gap-x-12 items-center self-center -mt-10">
         <div className="w-3/5">
           <h1 className="mb-6 text-6xl before:hidden after:hidden">{content.headline}</h1>
           <PrismicRichText field={content.intro} />
@@ -41,7 +41,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="flex flex-1 justify-end">
-          <PrismicNextImage field={content.picture} className="border shadow" width="400" />
+          <PrismicNextImage field={content.picture} className="border shadow" width="500" />
         </div>
       </div>
     </>
