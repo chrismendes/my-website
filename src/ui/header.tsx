@@ -12,7 +12,7 @@ export const SiteHeader = () => {
   return (
     <div className="w-full items-center justify-between lg:flex">
       <div className="flex flex-col">
-        <Link href="/" className="p-3 -m-3">
+        <Link href="/" className="p-3 -m-3 hover:text-inherit">
           <span className={`${fontOswald.className} text-3xl uppercase`}>Christopher Mendes</span>
         </Link>
       </div>

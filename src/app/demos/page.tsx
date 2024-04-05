@@ -42,7 +42,7 @@ console.clear();
         <h1 className={`mb-6`}>{content.page_title}</h1>
       </div>
       <div className="flex w-5/6 self-end bg-neutral-50 p-12">
-        <ul role="list" className="flex flex-col gap-y-24">
+        <ul role="list" className="flex flex-col gap-y-28">
           {content.demos?.map(({ demo }, index) => (
             <li className="flex flex-row gap-x-14 items-center" key={index}>
               {demo.data.picture &&
