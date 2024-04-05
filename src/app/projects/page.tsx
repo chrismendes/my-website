@@ -59,8 +59,10 @@ export default async function ProjectPage() {
                     />
                   </div>
                 }
-                <h2>{project.data.title}</h2>
-                <p>{project.data.intro}</p>
+                <div>
+                  <h2>{project.data.title}</h2>
+                  <p>{project.data.intro}</p>
+                </div>
                 {(project.data.tech.length > 0) &&
                   <div className="flex flex-row mb-4">
                     {project.data.tech?.filter(({ tech }) => !tech.data.nondistinct).map(({ tech }, index) => (

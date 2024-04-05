@@ -6,6 +6,13 @@
   "status": true,
   "json": {
     "Main": {
+      "page_title": {
+        "type": "Text",
+        "config": {
+          "label": "Page Title",
+          "placeholder": ""
+        }
+      },
       "summary": {
         "type": "StructuredText",
         "config": {

@@ -14,6 +14,11 @@
     @apply text-xl;
     @apply font-bold;
     @apply uppercase;
+    @apply mb-4;
+  }
+  h3 {
+    @apply text-lg;
+    @apply font-bold;
   }
   p {
     margin-top: 0;

@@ -51,8 +51,10 @@ console.clear();
                 </div>
               }
               <div className="w-1/2 flex flex-col gap-y-4">
-                <h2>{demo.data.title}</h2>
-                <PrismicRichText field={demo.data.description} />
+                <div>
+                  <h2>{demo.data.title}</h2>
+                  <PrismicRichText field={demo.data.description} />
+                </div>
                 <div className="flex gap-x-4 mb-2">
                   {demo.data.tech_stack?.filter(({ tech }) => tech?.data).map(({ tech }, index) => (
                     <SkillIcon
