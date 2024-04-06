@@ -70,10 +70,10 @@ export default async function CVPage() {
 
       <div className="px-12 mt-6">
         <h2>Experience</h2>
-        <div className="flex flex-col gap-y-12">
+        <div className="flex flex-col gap-y-10">
           {content.jobs?.filter(({ job }) => job?.data).map(({ job }, index) => (
-            <div className={`flex flex-col gap-y-4 ${(index % 2 !== 0) ? "" : ""}`} key={index}>
-              <div className="flex flex-row text-lg">
+            <div className={`flex flex-col gap-y-2 ${(index % 2 !== 0) ? "" : ""}`} key={index}>
+              <div className="flex flex-row text-lg bg-gray-100 p-4">
                 <span className="w-1/5 text-accent font-bold">May 2023 - Feb 2024</span>
                 <span className="w-4/5">
                   {/* <PrismicNextImage field={job.data?.employer_logo} className="max-h-16 w-auto" /> */}
@@ -82,7 +82,7 @@ export default async function CVPage() {
                 </span>
                 <span className="hidden w-3/5">{job.data?.job_title}</span>
               </div>
-              <div>
+              <div className="p-4">
                 <PrismicRichText field={job.data?.description} />
               </div>
             </div>
