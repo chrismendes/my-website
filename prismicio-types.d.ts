@@ -5,30 +5,15 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 /**
- * Item in *CV Page → Languages*
+ * Item in *CV Page → Key Skills*
  */
-export interface CvPageDocumentDataLanguagesItem {
+export interface CvPageDocumentDataKeySkillsItem {
   /**
-   * Lang field in *CV Page → Languages*
+   * Tech field in *CV Page → Key Skills*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
-   * - **API ID Path**: cv_page.languages[].lang
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  lang: prismic.ContentRelationshipField<"tech">;
-}
-
-/**
- * Item in *CV Page → Technologies*
- */
-export interface CvPageDocumentDataTechnologiesItem {
-  /**
-   * Tech field in *CV Page → Technologies*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cv_page.technologies[].tech
+   * - **API ID Path**: cv_page.key_skills[].tech
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   tech: prismic.ContentRelationshipField<"tech">;
@@ -93,28 +78,26 @@ interface CvPageDocumentData {
   summary: prismic.RichTextField;
 
   /**
-   * Languages field in *CV Page*
+   * Key Skills field in *CV Page*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: cv_page.languages[]
+   * - **API ID Path**: cv_page.key_skills[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  languages: prismic.GroupField<Simplify<CvPageDocumentDataLanguagesItem>>;
+  key_skills: prismic.GroupField<Simplify<CvPageDocumentDataKeySkillsItem>>;
 
   /**
-   * Technologies field in *CV Page*
+   * Secondary Skills field in *CV Page*
    *
-   * - **Field Type**: Group
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: cv_page.technologies[]
+   * - **API ID Path**: cv_page.secondary_skills
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  technologies: prismic.GroupField<
-    Simplify<CvPageDocumentDataTechnologiesItem>
-  >;
+  secondary_skills: prismic.RichTextField;
 
   /**
    * Jobs field in *CV Page*
@@ -1180,8 +1163,7 @@ declare module "@prismicio/client" {
     export type {
       CvPageDocument,
       CvPageDocumentData,
-      CvPageDocumentDataLanguagesItem,
-      CvPageDocumentDataTechnologiesItem,
+      CvPageDocumentDataKeySkillsItem,
       CvPageDocumentDataJobsItem,
       CvPageDocumentDataEducationItem,
       CvPageDocumentDataSlicesSlice,

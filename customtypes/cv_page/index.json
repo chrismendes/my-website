@@ -22,27 +22,10 @@
           "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
-      "languages": {
+      "key_skills": {
         "type": "Group",
         "config": {
-          "label": "Languages",
-          "repeat": true,
-          "fields": {
-            "lang": {
-              "type": "Link",
-              "config": {
-                "label": "Lang",
-                "select": "document",
-                "customtypes": ["tech"]
-              }
-            }
-          }
-        }
-      },
-      "technologies": {
-        "type": "Group",
-        "config": {
-          "label": "Technologies",
+          "label": "Key Skills",
           "repeat": true,
           "fields": {
             "tech": {
@@ -54,6 +37,15 @@
               }
             }
           }
+        }
+      },
+      "secondary_skills": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Secondary Skills",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
       "jobs": {

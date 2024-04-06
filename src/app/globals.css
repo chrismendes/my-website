@@ -11,7 +11,7 @@
   }
   h2 {
     font-family: var(--font-roboto);
-    @apply text-xl;
+    @apply text-2xl;
     @apply font-bold;
     @apply uppercase;
     @apply mb-4;
