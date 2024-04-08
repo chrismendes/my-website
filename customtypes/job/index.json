@@ -38,6 +38,20 @@
           "select": null
         }
       },
+      "employer_summary": {
+        "type": "Text",
+        "config": {
+          "label": "Employer Summary",
+          "placeholder": ""
+        }
+      },
+      "industry": {
+        "type": "Text",
+        "config": {
+          "label": "Industry",
+          "placeholder": ""
+        }
+      },
       "job_title": {
         "type": "Text",
         "config": {

@@ -628,6 +628,28 @@ interface JobDocumentData {
   employer_website: prismic.LinkField;
 
   /**
+   * Employer Summary field in *Job*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.employer_summary
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  employer_summary: prismic.KeyTextField;
+
+  /**
+   * Industry field in *Job*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: job.industry
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  industry: prismic.KeyTextField;
+
+  /**
    * Job Title field in *Job*
    *
    * - **Field Type**: Text

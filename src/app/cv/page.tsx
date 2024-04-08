@@ -5,7 +5,14 @@ import Link from "next/link";
 import { PrismicNextImage } from "@prismicio/next";
 import { notFound } from "next/navigation";
 import { Button, SkillIcon } from "@/ui";
+import { friendlyURL } from "@/util";
 import { IconPlay, IconGitHub } from "@/ui/icons";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/ui/hover-card";
+
 
 export default async function CVPage() {
 
@@ -76,8 +83,28 @@ export default async function CVPage() {
               <div className="flex flex-row text-lg bg-gray-100 p-4">
                 <span className="w-1/5 text-accent font-bold">May 2023 - Feb 2024</span>
                 <span className="w-4/5">
-                  {/* <PrismicNextImage field={job.data?.employer_logo} className="max-h-16 w-auto" /> */}
-                  <span className="font-bold uppercase">{job.data?.employer}</span>
+                  <HoverCard openDelay={0}>
+                    <HoverCardTrigger>
+                      <span className="font-bold uppercase inline-block border-b border-black border-dotted cursor-default">{job.data?.employer}</span>
+                    </HoverCardTrigger>
+                    <HoverCardContent side="top" className="flex flex-col gap-y-2 items-start text-sm font-sans">
+                      <PrismicNextImage field={job.data?.employer_logo} className="max-h-16 w-auto mb-2" />
+                      <p className="m-0">
+                        <span className="font-bold uppercase inline-block mr-2">{job.data?.employer}</span>
+                        {job.data?.employer_website &&
+                          <Link href={job.data?.employer_website}>
+                            {friendlyURL(job.data?.employer_website.url)}
+                          </Link>
+                        }
+                      </p>
+                      {job.data?.industry &&
+                        <p className="m-0 italic">Industry: {job.data?.industry}</p>
+                      }
+                      {job.data?.employer_summary &&
+                        <p className="m-0">{job.data?.employer_summary}</p>
+                      }
+                    </HoverCardContent>
+                  </HoverCard>
                   <span className="ml-3">{job.data?.job_title}</span>
                 </span>
                 <span className="hidden w-3/5">{job.data?.job_title}</span>
