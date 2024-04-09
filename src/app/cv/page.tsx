@@ -1,18 +1,9 @@
-import type { Content } from '@prismicio/client'
-import { prismic } from "@/prismicio";
-import { PrismicRichText } from "@prismicio/react";
-import Link from "next/link";
-import { PrismicNextImage } from "@prismicio/next";
 import { notFound } from "next/navigation";
-import { Button, SkillIcon } from "@/ui";
-import { friendlyURL } from "@/util";
-import { IconPlay, IconGitHub } from "@/ui/icons";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/ui/hover-card";
-
+import { prismic } from "@/prismicio";
+import type { Content } from '@prismicio/client'
+import { PrismicRichText } from "@prismicio/react";
+import { PrismicNextImage } from "@prismicio/next";
+import { CvSummary, CvJob } from "@/features/cv";
 
 export default async function CVPage() {
 
@@ -39,81 +30,48 @@ export default async function CVPage() {
     return notFound();
   }
   const content: Content.CvPageDocumentData = page.data;
-  
-// console.clear();
-// console.log(content.languages[0]?.lang);
-  
+
+  const summaryText = <PrismicRichText field={content.summary} />;
+  const skillsPrimary = content.key_skills?.filter(({ tech }) => tech?.data).map(({ tech }, index) => {
+    return {
+      name: tech.data.name,
+      image: <PrismicNextImage field={tech.data.icon} key={index} height={30} />
+    }
+  });
+  const skillsSecondary = <PrismicRichText field={content.secondary_skills} />;
+
   return (
     <div className="flex flex-col gap-y-16">
       <h1 className={`mb-6`}>{content.page_title}</h1>
 
-      <div className="bg-gray-100 p-12">
-        <h2>Summary</h2>
-        <div className="flex gap-x-24">
-          <div className="flex flex-col w-1/2">
-            <PrismicRichText field={content.summary} />
-          </div>
-          <div className="flex flex-col w-1/2 gap-y-4">
-            <div className="flex flex-col">
-              <h3>Key Skills</h3>
-              <div className="flex flex-row gap-y-8 mb-2 mt-6">
-                {content.key_skills?.filter(({ tech }) => tech?.data).map(({ tech }, index) => (
-                  <SkillIcon
-                    image={<PrismicNextImage field={tech.data.icon} key={index} height={30} />}
-                    label={tech.data.name}
-                    key={index}
-                  />
-                ))}
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <p className="text-sm">
-                Also:&nbsp; Restful APIs, Headless CMS, WordPress, Jest, Cypress, Storybook, Webpack, Git</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <CvSummary
+        summaryText={summaryText}
+        skillsPrimary={skillsPrimary}
+        skillsSecondary={skillsSecondary}
+      />
 
       <div className="px-12 mt-6">
         <h2>Experience</h2>
         <div className="flex flex-col gap-y-10">
-          {content.jobs?.filter(({ job }) => job?.data).map(({ job }, index) => (
-            <div className={`flex flex-col gap-y-2 ${(index % 2 !== 0) ? "" : ""}`} key={index}>
-              <div className="flex flex-row text-lg bg-gray-100 p-4">
-                <span className="w-1/5 text-accent font-bold">May 2023 - Feb 2024</span>
-                <span className="w-4/5">
-                  <HoverCard openDelay={0}>
-                    <HoverCardTrigger>
-                      <span className="font-bold uppercase inline-block border-b border-black border-dotted cursor-default">{job.data?.employer}</span>
-                    </HoverCardTrigger>
-                    <HoverCardContent side="top" className="flex flex-col gap-y-2 items-start text-sm font-sans">
-                      <PrismicNextImage field={job.data?.employer_logo} className="max-h-16 w-auto mb-2" />
-                      <p className="m-0">
-                        <span className="font-bold uppercase inline-block mr-2">{job.data?.employer}</span>
-                        {job.data?.employer_website &&
-                          <Link href={job.data?.employer_website}>
-                            {friendlyURL(job.data?.employer_website.url)}
-                          </Link>
-                        }
-                      </p>
-                      {job.data?.industry &&
-                        <p className="m-0 italic">Industry: {job.data?.industry}</p>
-                      }
-                      {job.data?.employer_summary &&
-                        <p className="m-0">{job.data?.employer_summary}</p>
-                      }
-                    </HoverCardContent>
-                  </HoverCard>
-                  <span className="ml-3">{job.data?.job_title}</span>
-                </span>
-                <span className="hidden w-3/5">{job.data?.job_title}</span>
-              </div>
-              <div className="p-4">
-                <PrismicRichText field={job.data?.description} />
-              </div>
-            </div>
-          ))}
+          {content.jobs?.map((item, index) => {
+            const job = item.job.data;
+            if (job) {
+              return (
+                <CvJob
+                  dateFrom={"May 2023 - Feb 2024"}
+                  dateTo={"May 2023 - Feb 2024"}
+                  jobTitle={job.job_title}
+                  jobDescription={<PrismicRichText field={job.description} />}
+                  companyName={job.employer}
+                  companyLogo={(job.employer_logo) ? <PrismicNextImage field={job.employer_logo} className="max-h-12 w-auto" /> : null}
+                  companyDescription={job.employer_summary}
+                  companyIndustry={job.industry}
+                  companyWebsite={job.employer_website?.url}
+                  key={index}
+                />
+              );
+            }
+          })}
         </div>
       </div>
       
