@@ -1,7 +1,5 @@
 import { notFound } from "next/navigation";
 import { fetchCvData, CvViewModel, CvSummary, CvJob } from "@/features/cv";
-import { PrismicRichText } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
 
 export default async function CVPage() {
 
