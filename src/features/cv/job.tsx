@@ -1,19 +1,21 @@
-import type { ComponentProps as ReactComponentProps } from "react";
 import Link from "next/link";
+import { PrismicRichText } from "@prismicio/react";
+import { PrismicNextImage } from "@prismicio/next";
+import type { KeyTextField, RichTextField, ImageField } from "@prismicio/client";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/ui/hover-card";
 import { friendlyURL } from "@/util";
 
-interface Props extends ReactComponentProps<"div"> {
+interface Props {
   dateFrom: string;
   dateTo: string;
-  jobTitle: string;
-  jobDescription: JSX.Element;
-  companyName: string;
-  companyLogo?: JSX.Element | null;
-  companyDescription: string;
-  companyIndustry: string;
+  jobTitle: KeyTextField;
+  jobDescription: RichTextField
+  companyName: KeyTextField;
+  companyLogo?: ImageField | null;
+  companyDescription: KeyTextField;
+  companyIndustry: KeyTextField;
   companyWebsite?: string;
-  key?: number;
+  index?: number;
 }
 
 export const CvJob = ({
@@ -26,9 +28,9 @@ export const CvJob = ({
   companyDescription,
   companyIndustry,
   companyWebsite,
-  key
+  index
 }: Props) => (
-  <div className="flex flex-col gap-y-2" key={key}>
+  <div className="flex flex-col gap-y-2" key={index}>
     <div className="flex flex-row text-lg bg-gray-100 p-4">
       <span className="w-1/5 text-accent font-bold">{dateFrom}</span>
       <span className="w-4/5">
@@ -44,7 +46,7 @@ export const CvJob = ({
           >
             {companyLogo &&
               <div className="max-h-16 w-auto mb-2">
-                {companyLogo}
+                <PrismicNextImage field={companyLogo} className="max-h-12 w-auto" />
               </div>
             }
             <p className="m-0">
@@ -70,7 +72,7 @@ export const CvJob = ({
       <span className="hidden w-3/5">{jobTitle}</span>
     </div>
     <div className="p-4">
-      {jobDescription}
+      <PrismicRichText field={jobDescription} />
     </div>
   </div>
 );

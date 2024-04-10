@@ -1,15 +1,12 @@
-
+import type { Content, RichTextField } from "@prismicio/client";
+import { PrismicRichText } from "@prismicio/react";
+import { PrismicNextImage } from "@prismicio/next";
 import { SkillIcon } from "@/ui";
 
-export interface Skill {
-  name: string;
-  image: JSX.Element;
-}
-
 interface ComponentProps {
-  summaryText: JSX.Element;
-  skillsPrimary: Skill[];
-  skillsSecondary: JSX.Element;
+  summaryText: RichTextField;
+  skillsPrimary: Content.TechDocumentData[];
+  skillsSecondary: RichTextField;
 }
 
 export const CvSummary = ({ summaryText, skillsPrimary, skillsSecondary }: ComponentProps) => (
@@ -17,7 +14,7 @@ export const CvSummary = ({ summaryText, skillsPrimary, skillsSecondary }: Compo
     <h2>Summary</h2>
     <div className="flex gap-x-24">
       <div className="flex flex-col w-1/2">
-        {summaryText}
+        <PrismicRichText field={summaryText} />
       </div>
       <div className="flex flex-col w-1/2 gap-y-4">
         <div className="flex flex-col">
@@ -26,14 +23,14 @@ export const CvSummary = ({ summaryText, skillsPrimary, skillsSecondary }: Compo
             {skillsPrimary.map((skill, index) => (
               <SkillIcon
                 label={skill.name}
-                image={skill.image}
+                image={<PrismicNextImage field={skill.icon} />}
                 key={index}
               />
             ))}
           </div>
         </div>
         <div className="flex flex-col text-sm">
-          {skillsSecondary}
+          <PrismicRichText field={skillsSecondary} />
         </div>
       </div>
     </div>

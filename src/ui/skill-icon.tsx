@@ -1,6 +1,8 @@
+import type { KeyTextField } from "@prismicio/client";
+
 interface ComponentProps {
   image: React.ReactNode,
-  label: string,
+  label: KeyTextField,
   showLabel?: boolean | undefined,
 }
 
