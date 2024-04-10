@@ -4,7 +4,7 @@ interface ComponentProps {
 }
 
 export const CvSection = ({ heading, children }: ComponentProps) => (
-  <div className="px-12 mt-6">
+  <div className="xl:px-12 mt-6">
     {heading &&
       <h2>{heading}</h2>
     }

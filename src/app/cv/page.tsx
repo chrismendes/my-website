@@ -10,7 +10,7 @@ export default async function CVPage() {
   const viewModel = new CvViewModel(data);
   
   return (
-    <div className="flex flex-col gap-y-16">
+    <div className="flex flex-col gap-y-8 lg:gap-y-16">
       <h1 className={`mb-6`}>{viewModel.pageTitle}</h1>
       <CvSummary
         summaryText={viewModel.summaryText}

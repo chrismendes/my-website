@@ -23,7 +23,7 @@ export const CvSummary = ({ summaryText, skillsPrimary, skillsSecondary }: Compo
             {skillsPrimary.map((skill, index) => (
               <SkillIcon
                 label={skill.name}
-                image={<PrismicNextImage field={skill.icon} />}
+                image={<PrismicNextImage field={skill.icon} className="h-[30px] lg:h-auto w-auto" />}
                 key={index}
               />
             ))}
