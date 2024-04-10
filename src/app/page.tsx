@@ -24,9 +24,9 @@ export default async function Home() {
           <PrismicRichText field={content.intro} />
 
           <div className="flex flex-col xl:flex-row items-center lg:items-start xl:items-center gap-6 mt-12">
-            <span className="font-bold text-nowrap hidden lg:inline">Tech Stack</span>
+            <span className="italic text-nowrap hidden lg:inline">Tech Stack</span>
             <ul
-              className="flex w-full flex-wrap gap-4 justify-center lg:justify-start xl:justify-center before:hidden xl:before:block xl:before:content-['{'] before:text-8xl before:text-slate-200 before:mt-[-10px] after:hidden xl:after:block xl:after:content-['}'] after:text-8xl after:text-slate-200 after:mt-[-10px]"
+              className="flex w-full flex-wrap gap-4 justify-center lg:justify-start before:hidden xl:before:block xl:before:content-['{'] before:text-8xl before:text-slate-200 before:mt-[-10px] after:hidden xl:after:block xl:after:content-['}'] after:text-8xl after:text-slate-200 after:mt-[-10px]"
               role="list"
             >
               {content.key_skills.map(({ tech }, index) => (
