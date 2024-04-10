@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
-
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
-
 import { SiteHeader } from "@/ui";
 import { fontRoboto, fontOswald } from "@/ui/fonts";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Christopher Mendes | Frontend Developer",
@@ -17,8 +15,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  
   
   return (
     <html lang="en">
