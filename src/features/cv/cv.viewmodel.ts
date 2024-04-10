@@ -34,9 +34,9 @@ export class CvViewModel {
     return this._jobs.filter(item => item.job.data).map(({ job }) => {
       const jobData = { ...job.data };
       const startDate = new Date(jobData.date_start);
-      const startMonth = startDate.toLocaleString("default", { month: "long" });
+      const startMonth = startDate.toLocaleString("default", { month: "long" }).substring(0, 3);
       const endDate = new Date(jobData.date_end);
-      const endMonth = endDate.toLocaleString("default", { month: "long" });
+      const endMonth = endDate.toLocaleString("default", { month: "long" }).substring(0, 3);
       jobData.date_start = `${startMonth} ${startDate.getFullYear()}`;
       jobData.date_end = `${endMonth} ${endDate.getFullYear()}`;
       jobData.tech = job.data.tech.map((item: Content.TechDocument) => item.tech.data);

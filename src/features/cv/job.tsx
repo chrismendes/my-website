@@ -32,8 +32,8 @@ export const CvJob = ({
 }: Props) => (
   <div className="flex flex-col gap-y-2" key={index}>
     <div className="flex flex-row text-lg bg-gray-100 p-4">
-      <span className="w-1/3 text-accent font-bold">{dateFrom} - {dateTo}</span>
-      <span className="w-2/3">
+      <span className="w-1/5 text-accent font-bold uppercase">{dateFrom} - {dateTo}</span>
+      <span className="w-4/5">
         <HoverCard openDelay={0}>
           <HoverCardTrigger>
             <span className="font-bold uppercase inline-block border-b border-black border-dotted cursor-default">
