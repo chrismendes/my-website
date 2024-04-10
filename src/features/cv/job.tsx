@@ -54,7 +54,7 @@ export const CvJob = ({
                 {companyName}
               </span>
               {companyWebsite && (
-                <Link href={companyWebsite}>
+                <Link href={companyWebsite} target="_blank">
                   {friendlyURL(companyWebsite)}
                 </Link>
               )}
