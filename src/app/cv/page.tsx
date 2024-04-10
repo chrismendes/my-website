@@ -22,8 +22,8 @@ export default async function CVPage() {
           if (job) {
             return (
               <CvJob
-                dateFrom={"May 2023 - Feb 2024"}
-                dateTo={"May 2023 - Feb 2024"}
+                dateFrom={job.date_start}
+                dateTo={job.date_end}
                 jobTitle={job.job_title}
                 jobDescription={job.description}
                 companyName={job.employer}
