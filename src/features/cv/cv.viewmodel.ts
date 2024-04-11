@@ -1,8 +1,9 @@
-import type { Content, KeyTextField, RichTextField } from "@prismicio/client";
+import type { Content, KeyTextField, RichTextField, LinkToMediaField } from "@prismicio/client";
 
 export class CvViewModel {
 
   _pageTitle: KeyTextField;
+  _pdf: LinkToMediaField;
   _summaryText: RichTextField;
   _skillsPrimary: Content.CvPageDocumentDataKeySkillsItem[];
   _skillsSecondary: RichTextField;
@@ -10,6 +11,7 @@ export class CvViewModel {
   
   constructor(rawData: Content.CvPageDocumentData) {
     this._pageTitle = rawData.page_title;
+    this._pdf = rawData.pdf;
     this._summaryText = rawData.summary;
     this._skillsPrimary = rawData.key_skills;
     this._skillsSecondary = rawData.secondary_skills;
@@ -18,6 +20,9 @@ export class CvViewModel {
 
   get pageTitle () {
     return this._pageTitle;
+  }
+  get pdf () {
+    return this._pdf;
   }
   get summaryText () {
     return this._summaryText;

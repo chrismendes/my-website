@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
 import { fetchCvData, CvViewModel, CvSection, CvSummary, CvJob } from "@/features/cv";
+import Link from "next/link";
+import { Button } from "@/ui";
+import { FileDown } from "lucide-react";
 
 export default async function CVPage() {
 
@@ -11,7 +14,17 @@ export default async function CVPage() {
   
   return (
     <div className="flex flex-col gap-y-8 lg:gap-y-16">
-      <h1 className={`mb-6`}>{viewModel.pageTitle}</h1>
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-8 mb-6">
+        <h1 className="text-center sm:text-left">{viewModel.pageTitle}</h1>
+        {viewModel.pdf.url &&
+          <Button asChild>
+            <Link href={viewModel.pdf.url} target="_blank">
+              <FileDown />
+              Download CV (PDF)
+            </Link>
+          </Button>
+        }
+      </div>
       <CvSummary
         summaryText={viewModel.summaryText}
         skillsPrimary={viewModel.skillsPrimary}

@@ -37,18 +37,18 @@ export default async function ProjectPage() {
   
   return (
     <>
-      <div className="flex flex-row gap-x-12">
-        <div className="flex w-1/6 pt-10">
+      <div className="flex flex-col xl:flex-row gap-x-12">
+        <div className="flex xl:w-1/6 pt-10">
           <h1 className={`mb-6`}>{content.page_title}</h1>
         </div>
-        <div className="flex w-5/6 self-end bg-neutral-50 p-12">
-          <ul role="list" className="grid grid-cols-2 gap-x-32 gap-y-20">
+        <div className="flex xl:w-5/6 self-end xl:bg-neutral-50 xl:p-12">
+          <ul role="list" className="flex flex-col xl:grid xl:grid-cols-2 gap-x-32 gap-y-12 xl:gap-y-20">
             {content.projects?.map(({ project }, index) => (
-              <li className="flex flex-col items-start gap-y-3 min-w-14" key={index}>
+              <li className="flex flex-col items-start gap-y-3 min-w-14 p-6 bg-neutral-50 xl:p-0 xl:bg-none" key={index}>
                 <div className="h-[216px] overflow-hidden shadow-lg mb-4 flex items-center">
                   <Link href={"/projects/" + project.data.uid}>
                     {project.data.gallery[0] &&
-                      <PrismicNextImage field={project.data.gallery[0].picture} />
+                      <PrismicNextImage field={project.data.gallery[0].picture} className="w-full" />
                     }
                   </Link>
                 </div>

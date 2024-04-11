@@ -13,6 +13,14 @@
           "placeholder": ""
         }
       },
+      "pdf": {
+        "type": "Link",
+        "config": {
+          "label": "PDF",
+          "placeholder": "",
+          "select": "media"
+        }
+      },
       "summary": {
         "type": "StructuredText",
         "config": {

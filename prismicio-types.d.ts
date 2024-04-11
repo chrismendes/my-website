@@ -67,6 +67,17 @@ interface CvPageDocumentData {
   page_title: prismic.KeyTextField;
 
   /**
+   * PDF field in *CV Page*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cv_page.pdf
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  pdf: prismic.LinkToMediaField;
+
+  /**
    * Summary field in *CV Page*
    *
    * - **Field Type**: Rich Text
