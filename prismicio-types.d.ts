@@ -889,6 +889,28 @@ interface ProjectDocumentData {
   title: prismic.KeyTextField;
 
   /**
+   * Intro field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.intro
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  intro: prismic.KeyTextField;
+
+  /**
+   * Cover Picture field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.cover_picture
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover_picture: prismic.ImageField<never>;
+
+  /**
    * Date field in *Project*
    *
    * - **Field Type**: Date
@@ -920,17 +942,6 @@ interface ProjectDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   logo_override: prismic.ImageField<never>;
-
-  /**
-   * Intro field in *Project*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project.intro
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  intro: prismic.KeyTextField;
 
   /**
    * Description field in *Project*

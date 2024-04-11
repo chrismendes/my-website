@@ -19,6 +19,21 @@
           "placeholder": ""
         }
       },
+      "intro": {
+        "type": "Text",
+        "config": {
+          "label": "Intro",
+          "placeholder": ""
+        }
+      },
+      "cover_picture": {
+        "type": "Image",
+        "config": {
+          "label": "Cover Picture",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "date": {
         "type": "Date",
         "config": {
@@ -43,13 +58,6 @@
             "width": 120
           },
           "thumbnails": []
-        }
-      },
-      "intro": {
-        "type": "Text",
-        "config": {
-          "label": "Intro",
-          "placeholder": ""
         }
       },
       "description": {
