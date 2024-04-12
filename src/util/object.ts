@@ -4,7 +4,7 @@ type ReplaceFunction = (value: any) => any;
 export const deepFindAndReplace = (obj: any, matchFn: MatchFunction, replaceFn: ReplaceFunction): any => {
   const replaceRecursive = (value: any): any => {
     if (Array.isArray(value)) {
-      return value.map(replaceRecursive);
+      return matchFn(value) ? replaceFn(value) : value.map(replaceRecursive);
     }
     if (value !== null && typeof value === "object") {
       const updatedObject: any = {};

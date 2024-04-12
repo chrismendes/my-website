@@ -25,7 +25,7 @@ const isPrismicField = (value: any): boolean => {
     if (prismicH.isFilled.image(value)) {
       return true;
     }
-    if (prismicH.isFilled.richText(value)) {
+    if (prismicH.isFilled.richText(value) && value[0].type) { // (Extra criteria needed as `.richText` erroneously returning true on non-richText fields)
       return true;
     }
     if (prismicH.isFilled.link(value)) {
