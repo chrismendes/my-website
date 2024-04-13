@@ -1,4 +1,3 @@
-
 import { TabbedCarousel, withPrismicFieldComponents } from "@/ui";
 import { fetchProjectData, ProjectViewModel, ProjectHeader, ProjectBody } from "@/features/projects";
 import type { Content } from '@prismicio/client'
