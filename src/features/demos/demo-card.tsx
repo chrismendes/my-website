@@ -39,13 +39,14 @@ export const DemoCard = ({ title, description, picture, tech, linkDemo, linkSour
         }
       </div>
       <div className="flex gap-x-4 mb-2">
-        {tech.map(( tech: TechViewModel, index: number) => (
-          <SkillIcon
+        {tech.map(( tech: TechViewModel, index: number) => {
+          return <SkillIcon
             icon={tech.icon}
             label={tech.name}
             key={index}
+            small
           />
-        ))}
+        })}
       </div>
       <div className="flex gap-x-4">
         {linkDemo &&
