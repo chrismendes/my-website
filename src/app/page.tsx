@@ -1,4 +1,5 @@
-import { fetchHomeData, HomeViewModel, Hero } from "@/features/home";
+import { fetchHomeData, HomeViewModel, HomeHero } from "@/features/home";
+import { withPrismicFieldComponents } from "@/ui";
 import { notFound } from "next/navigation";
 
 export default async function Home() {
@@ -8,6 +9,7 @@ export default async function Home() {
     return notFound();
   }
   const viewModel = new HomeViewModel(data);
+  const Hero = withPrismicFieldComponents(HomeHero);
   
   return (
     <Hero
