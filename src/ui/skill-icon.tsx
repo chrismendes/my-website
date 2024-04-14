@@ -10,7 +10,8 @@ export interface ComponentProps {
 }
 
 export const SkillIcon = ({ icon, small = false, iconCn, label, showLabel }: ComponentProps) => {
-  
+  if (!icon) return null;
+
   const baseIconCn = "w-auto";
   const sizeCn = (small) ? "h-[30px]" : "";
   const iconComponent = React.cloneElement(icon, {
