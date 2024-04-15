@@ -1,4 +1,5 @@
 import type { Content, KeyTextField } from "@prismicio/client";
+import * as prismicH from "@prismicio/helpers";
 
 export class ProjectIndexViewModel {
 
@@ -17,7 +18,7 @@ export class ProjectIndexViewModel {
     return this._projects.filter(item => item.project.data).map(({ project }) => {
       const projectData = { ...project.data };
       projectData.tech = project.data.tech
-        .filter((item: Content.TechDocument) => !item.tech.data.nondistinct)
+        .filter((item: Content.TechDocument) => prismicH.isFilled.contentRelationship(item) && !item.tech.data?.nondistinct)
         .map((item: Content.TechDocument) => item.tech.data);
       return projectData;
     });;

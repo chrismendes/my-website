@@ -21,7 +21,7 @@ export default async function ProjectPage() {
             <ProjectCard
               title={project.title}
               description={project.intro}
-              picture={project.gallery[0]?.picture as ImageField}
+              picture={project.cover_picture as ImageField}
               logo={project.logo_override || project.employer.data.employer_logo}
               tech={project.tech as Content.TechDocumentData[]}
               url={"/projects/" + project.uid}

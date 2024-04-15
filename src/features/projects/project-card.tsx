@@ -36,7 +36,7 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, inde
     </div>
     {(tech && tech.length > 0) &&
       <div className="flex flex-row mb-4">
-        {tech.map((item, index) => (
+        {tech.length && tech.map((item, index) => (
           <SkillIcon
             image={<PrismicNextImage field={item.icon} title={item.name} key={index} height={30} />}
             label={item.name}

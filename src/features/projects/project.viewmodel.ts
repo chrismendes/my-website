@@ -5,6 +5,7 @@ export class ProjectViewModel {
 
   _title: string;
   _intro: string;
+  _coverPicture?: ImageField;
   _date: string;
   _employer: Content.JobDocumentData;
   _logo?: ImageField;
@@ -20,6 +21,7 @@ export class ProjectViewModel {
   constructor(cmsData: Content.ProjectDocumentData) {
     this._title = cmsData.title as string;
     this._intro = cmsData.intro as string;
+    this._coverPicture = cmsData.cover_picture;
     this._date = cmsData.date as string;
     this._employer = cmsData.employer.data;
     this._logo = cmsData.logo_override || cmsData.employer.data.employer_logo;
@@ -37,6 +39,9 @@ export class ProjectViewModel {
   }
   get intro () {
     return this._intro;
+  }
+  get coverPicture () {
+    return this._coverPicture;
   }
   get date () {
     const dateObj = new Date(this._date);
