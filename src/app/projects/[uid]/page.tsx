@@ -25,7 +25,7 @@ export default async function ProjectPage({ params: { uid } }: PageProps) {
     <div className="flex flex-col">
       <Header
         title={viewModel.title}
-        logo={viewModel.employer.employer_logo}
+        logo={viewModel.logo || viewModel.employer.employer_logo}
         intro={viewModel.intro}
       />
       <Gallery carousels={viewModel.galleries} />
