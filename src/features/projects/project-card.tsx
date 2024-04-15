@@ -27,7 +27,7 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, inde
     </div>
     {logo &&
       <div className="h-[40px] flex items-center">
-        <PrismicNextImage field={logo} />
+        <PrismicNextImage field={logo} className="w-auto max-h-full" />
       </div>
     }
     <div>
