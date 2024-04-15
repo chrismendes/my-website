@@ -933,7 +933,7 @@ interface ProjectDocumentData {
   employer: prismic.ContentRelationshipField<"job">;
 
   /**
-   * Logo Override field in *Project*
+   * Client Logo field in *Project*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*

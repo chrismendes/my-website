@@ -52,7 +52,7 @@
       "logo_override": {
         "type": "Image",
         "config": {
-          "label": "Logo Override",
+          "label": "Client Logo",
           "constraint": {
             "height": null,
             "width": 120
