@@ -3,6 +3,7 @@ import { fetchCvData, CvViewModel, CvSection, CvSummary, CvJob } from "@/feature
 import Link from "next/link";
 import { Button } from "@/ui";
 import { FileDown } from "lucide-react";
+import { withPrismicFieldComponents } from "@/ui";
 
 export default async function CVPage() {
 
@@ -11,6 +12,8 @@ export default async function CVPage() {
     return notFound();
   }
   const viewModel = new CvViewModel(data);
+  const Summary = withPrismicFieldComponents(CvSummary);
+  const Job = withPrismicFieldComponents(CvJob);
   
   return (
     <div className="flex flex-col gap-y-8 lg:gap-y-16">
@@ -25,7 +28,7 @@ export default async function CVPage() {
           </Button>
         }
       </div>
-      <CvSummary
+      <Summary
         summaryText={viewModel.summaryText}
         skillsPrimary={viewModel.skillsPrimary}
         skillsSecondary={viewModel.skillsSecondary}
