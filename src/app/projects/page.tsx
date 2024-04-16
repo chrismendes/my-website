@@ -28,7 +28,7 @@ export default async function ProjectPage() {
                   picture={project.coverPicture}
                   logo={project.logo}
                   tech={project.tech}
-                  // url={"/projects/" + project.uid}
+                  url={(project.description) ? "/projects/" + project.uid : null}
                   gallery={project.galleries[0].pictures}
                 />
               </li>

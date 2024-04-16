@@ -20,7 +20,7 @@ interface Props {
 
 export const ProjectCard = ({ title, description, picture, logo, tech, url, gallery }: Props) => {
 
-  const logoCn = "w-auto max-h-full";
+  const logoCn = "w-auto max-h-[46px]";
   const pictureCn = "w-full cursor-pointer";
 
   const logoWithProps = (logo) ? React.cloneElement(logo, {
@@ -67,7 +67,9 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, gall
         }
       </div>
       {logoComponent &&
-        <>{logoComponent}</>
+        <div className="h-[46px] flex items-center">
+          <>{logoComponent}</>
+        </div>
       }
       <div>
         {title &&
@@ -92,17 +94,17 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, gall
           })}
         </div>
       }
-      <div className="flex gap-x-4">
-        {url ?
+      <div className="flex items-center gap-x-4">
+        {url &&
           <Button asChild>
             <Link href={url}>Read More</Link>
           </Button>
-        :
+        }
         <Sheet open={galleryOpen} onOpenChange={setGalleryOpen}>
           <SheetTrigger asChild>
             <Button variant="secondary">
               <ZoomIn />
-              Open Gallery
+              Quick View
             </Button>
           </SheetTrigger>
           <SheetContent side="bottom" className="h-3/4 bg-neutral-100 px-24 py-8">
@@ -110,7 +112,7 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, gall
               <div className="flex items-center justify-center gap-x-4">
                 {logoComponent &&
                   React.cloneElement(logoComponent, {
-                    className: "h-8 w-auto"
+                    className: "max-h-8 w-auto"
                   })
                 }
                 <h2 className="m-0 text-xl">{title}</h2>
@@ -119,7 +121,6 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, gall
             </div>
           </SheetContent>
         </Sheet>
-        }
       </div>
     </div>
   )
