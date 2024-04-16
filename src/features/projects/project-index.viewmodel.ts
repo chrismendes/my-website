@@ -1,27 +1,28 @@
 import type { Content, KeyTextField } from "@prismicio/client";
+import { ProjectViewModel } from "@/features/projects";
 import { TechViewModel } from "@/features/tech";
 
 export class ProjectIndexViewModel {
 
   _pageTitle: KeyTextField;
-  _projects: Content.ProjectPageDocumentDataProjectsItem[];
+  _projects: ProjectViewModel[];
   
   constructor(rawData: Content.ProjectPageDocumentData) {
     this._pageTitle = rawData.page_title;
-    this._projects = rawData.projects;
+    this._projects = rawData.projects.filter(item => item.project.data).map((item) => {
+      return new ProjectViewModel(item.project.data);
+    });
   }
 
   get pageTitle () {
     return this._pageTitle;
   }
-  get projects (): Content.ProjectDocumentData[] {
-    return this._projects.filter(item => item.project.data).map(({ project }) => {
-      const projectData = { ...project.data };
-      projectData.tech = project.data.tech
-        .filter((item: Content.TechDocument) => !item.tech.data.nondistinct)
-        .map((item: Content.TechDocument) => new TechViewModel(item.tech.data));
-      return projectData;
-    });;
+  get projects (): ProjectViewModel[] {
+    return this._projects.map(( project: ProjectViewModel ) => {
+      const distinctTech = project.tech.filter((tech: TechViewModel) => !tech.nonDistinct);
+      project.tech = distinctTech;
+      return project;
+    });
   }
 
 }

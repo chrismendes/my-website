@@ -1,5 +1,6 @@
-import type { Content, KeyTextField, RichTextField, DateField, ImageField, LinkField } from "@prismicio/client";
+import type { Content, RichTextField, ImageField, LinkField } from "@prismicio/client";
 import type { CarouselTab } from "@/ui";
+import { TechViewModel } from "@/features/tech";
 
 export class ProjectViewModel {
 
@@ -10,7 +11,7 @@ export class ProjectViewModel {
   _employer: Content.JobDocumentData;
   _logo?: ImageField;
   _description: RichTextField;
-  _tech: Content.ProjectDocumentDataTechItem[]
+  _tech: TechViewModel[]
   _gallery: ImageField[];
   _galleryMobile: ImageField[];
   _galleryBefore: ImageField[];
@@ -23,10 +24,12 @@ export class ProjectViewModel {
     this._intro = cmsData.intro as string;
     this._coverPicture = cmsData.cover_picture;
     this._date = cmsData.date as string;
-    this._employer = cmsData.employer.data;
-    this._logo = cmsData.logo_override || cmsData.employer.data.employer_logo;
+    this._employer = cmsData.employer?.data;
+    this._logo = cmsData.logo_override || cmsData.employer?.data?.employer_logo;
     this._description = cmsData.description;
-    this._tech = cmsData.tech;
+    this._tech = cmsData.tech
+      .filter(item => item.tech.data)
+      .map(({ tech }) => new TechViewModel(tech.data));
     this._gallery = cmsData.gallery as ImageField[];
     this._galleryMobile = cmsData.gallery_mobile as ImageField[];
     this._galleryBefore = cmsData.gallery_before as ImageField[];
@@ -60,10 +63,11 @@ export class ProjectViewModel {
   get description () {
     return this._description;
   }
-  get tech (): Content.TechDocumentData[] {
-    return this._tech
-      .filter(item => item.tech.data)
-      .map(({ tech }) => tech.data);
+  get tech (): TechViewModel[] {
+    return this._tech;
+  }
+  set tech (newTech: TechViewModel[]) {
+    this._tech = newTech;
   }
   get galleries () {
     if(this._gallery.length) {

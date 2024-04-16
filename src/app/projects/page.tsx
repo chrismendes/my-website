@@ -25,10 +25,11 @@ export default async function ProjectPage() {
                 <Card
                   title={project.title}
                   description={project.intro}
-                  picture={project.cover_picture}
-                  logo={project.logo_override}
+                  picture={project.coverPicture}
+                  logo={project.logo}
                   tech={project.tech}
-                  url={"/projects/" + project.uid}
+                  // url={"/projects/" + project.uid}
+                  gallery={project.galleries[0].pictures}
                 />
               </li>
             );
