@@ -12,9 +12,6 @@ export const fetchProjectIndexData = async (): Promise<Content.ProjectPageDocume
           projects {
             project {
               ...projectFields
-              employer {
-                ...employerFields
-              }
               tech {
                 tech {
                   ...techFields

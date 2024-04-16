@@ -1,5 +1,5 @@
 import type { Content, KeyTextField } from "@prismicio/client";
-import * as prismicH from "@prismicio/helpers";
+import { TechViewModel } from "@/features/tech";
 
 export class ProjectIndexViewModel {
 
@@ -18,8 +18,8 @@ export class ProjectIndexViewModel {
     return this._projects.filter(item => item.project.data).map(({ project }) => {
       const projectData = { ...project.data };
       projectData.tech = project.data.tech
-        .filter((item: Content.TechDocument) => prismicH.isFilled.contentRelationship(item) && !item.tech.data?.nondistinct)
-        .map((item: Content.TechDocument) => item.tech.data);
+        .filter((item: Content.TechDocument) => !item.tech.data.nondistinct)
+        .map((item: Content.TechDocument) => new TechViewModel(item.tech.data));
       return projectData;
     });;
   }

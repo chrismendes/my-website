@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import { SkillIcon } from "@/ui";
-import type { ComponentProps as SkillIconProps } from "@/ui";
+import { TechViewModel } from "@/features/tech";
 
 interface Props {
   headline: string;
   intro?: JSX.Element;
-  keySkills?: SkillIconProps[];
+  keySkills: TechViewModel[];
   picture: JSX.Element;
 }
 

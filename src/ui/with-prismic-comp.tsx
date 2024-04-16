@@ -5,15 +5,25 @@ import * as prismicH from "@prismicio/helpers";
 import type { RichTextField } from "@prismicio/client";
 import { deepFindAndReplace } from "@/util";
 
+const isImageField = (value: any) => {
+  return (prismicH.isFilled.image(value) && value.dimensions);
+}
+const isRichTextField = (value: any) => {
+  return (prismicH.isFilled.richText(value) && value[0].type);
+}
+const isLinkField = (value: any) => {
+  return (prismicH.isFilled.link(value) && value.link_type);
+}
+
 const addPrismicComponent = (value: any): JSX.Element | false => {
   if (typeof value === "object") {
-    if (prismicH.isFilled.image(value)) {
+    if (isImageField(value)) {
       return <PrismicNextImage field={value} className="w-auto" />;
     }
-    if (prismicH.isFilled.richText(value)) {
+    if (isRichTextField(value)) {
       return <PrismicRichText field={value as RichTextField} />;
     }
-    if (prismicH.isFilled.link(value)) {
+    if (isLinkField(value)) {
       return <PrismicNextLink field={value} />;
     }
   }
@@ -22,13 +32,13 @@ const addPrismicComponent = (value: any): JSX.Element | false => {
 
 const isPrismicField = (value: any): boolean => {
   if (typeof value === "object") {
-    if (prismicH.isFilled.image(value)) {
+    if (isImageField(value)) {
       return true;
     }
-    if (prismicH.isFilled.richText(value) && value[0].type) { // (Extra criteria needed as `.richText` erroneously returning true on non-richText fields)
+    if (isRichTextField(value)) {
       return true;
     }
-    if (prismicH.isFilled.link(value)) {
+    if (isLinkField(value)) {
       return true;
     }
   }
