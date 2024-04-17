@@ -3,8 +3,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+  CarouselNavigation,
 } from "@/ui/carousel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import { Monitor, Smartphone } from "lucide-react";
@@ -59,8 +58,7 @@ export const TabbedCarousel = ({ carousels }: Props) => (
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselNavigation />
         </Carousel>
       </TabsContent>
     ))}

@@ -194,6 +194,22 @@ const CarouselItem = React.forwardRef<
 });
 CarouselItem.displayName = "CarouselItem";
 
+const CarouselNavigation = React.forwardRef<
+HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className="flex items-center justify-center gap-x-4 mt-6"
+      {...props}
+    >
+      <CarouselPrevious />
+      <CarouselNext />
+    </div>
+  );
+})
+
 const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
@@ -205,10 +221,10 @@ const CarouselPrevious = React.forwardRef<
       ref={ref}
       variant={variant}
       className={cn(
-        "absolute",
+        "xl:-ml-8 xl:absolute static ml-0",
         orientation === "horizontal"
-          ? "-left-12 top-1/2 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "-left-12 top-1/2"
+          : "-top-12 left-1/2 rotate-90",
         className
       )}
       disabled={!canScrollPrev}
@@ -233,10 +249,10 @@ const CarouselNext = React.forwardRef<
       ref={ref}
       variant={variant}
       className={cn(
-        "absolute",
+        "xl:-mr-8 xl:absolute static mr-0",
         orientation === "horizontal"
-          ? "-right-12 top-1/2 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "-right-12 top-1/2 "
+          : "-bottom-12 left-1/2 rotate-90",
         className
       )}
       disabled={!canScrollNext}
@@ -255,6 +271,7 @@ export {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNavigation,
   CarouselPrevious,
   CarouselNext,
 };

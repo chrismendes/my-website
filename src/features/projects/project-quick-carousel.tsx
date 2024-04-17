@@ -5,6 +5,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselNavigation
 } from "@/ui/carousel";
 
 interface Props {
@@ -15,7 +16,7 @@ export const QuickCarousel = ({ images }: Props) => (
   <Carousel>
     <CarouselContent>
       {images.map((img, index) => (
-        <CarouselItem className="basis-1/2" key={index}>
+        <CarouselItem className="basis-auto" key={index}>
           <div className="flex justify-center">
             {React.isValidElement(img) &&
               <>{img}</>
@@ -24,7 +25,6 @@ export const QuickCarousel = ({ images }: Props) => (
         </CarouselItem>
       ))}
     </CarouselContent>
-    <CarouselPrevious className="-ml-8" />
-    <CarouselNext className="-mr-8" />
+    <CarouselNavigation />
   </Carousel>
 );

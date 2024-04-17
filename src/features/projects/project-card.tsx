@@ -107,17 +107,19 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, gall
               Quick View
             </Button>
           </SheetTrigger>
-          <SheetContent side="bottom" className="h-3/4 bg-neutral-100 px-24 py-8">
-            <div className="flex flex-col gap-y-12 items-center justify-center">
-              <div className="flex items-center justify-center gap-x-4">
+          <SheetContent side="bottom" className="h-1/2 sm:h-2/3 xl:h-3/4 px-8 lg:px-24 py-8">
+            <div className="">
+              <div className="flex items-center justify-center gap-x-4 mb-8">
                 {logoComponent &&
                   React.cloneElement(logoComponent, {
                     className: "max-h-8 w-auto"
                   })
                 }
-                <h2 className="m-0 text-xl">{title}</h2>
+                <h2 className="m-0 text-base lg:text-xl">{title}</h2>
               </div>
-              <QuickCarousel images={gallery} />
+              <div className="flex items-center flex-1 xl:block">
+                <QuickCarousel images={gallery} />
+              </div>
             </div>
           </SheetContent>
         </Sheet>
