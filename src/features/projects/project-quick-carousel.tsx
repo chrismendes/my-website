@@ -3,8 +3,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   CarouselNavigation
 } from "@/ui/carousel";
 
@@ -16,7 +14,7 @@ export const QuickCarousel = ({ images }: Props) => (
   <Carousel>
     <CarouselContent>
       {images.map((img, index) => (
-        <CarouselItem className="basis-auto" key={index}>
+        <CarouselItem className="basis-full" key={index}>
           <div className="flex justify-center">
             {React.isValidElement(img) &&
               <>{img}</>

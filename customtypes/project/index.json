@@ -30,7 +30,9 @@
         "type": "Image",
         "config": {
           "label": "Cover Picture",
-          "constraint": {},
+          "constraint": {
+            "width": 500
+          },
           "thumbnails": []
         }
       },
@@ -102,8 +104,8 @@
                 "thumbnails": [
                   {
                     "name": "large",
-                    "width": 1200,
-                    "height": null
+                    "width": 1600,
+                    "height": ""
                   }
                 ]
               }

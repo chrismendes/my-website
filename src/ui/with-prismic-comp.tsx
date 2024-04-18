@@ -18,7 +18,7 @@ const isLinkField = (value: any) => {
 const addPrismicComponent = (value: any): JSX.Element | false => {
   if (typeof value === "object") {
     if (isImageField(value)) {
-      return <PrismicNextImage field={value} className="w-auto" />;
+      return <PrismicNextImage field={value} />;
     }
     if (isRichTextField(value)) {
       return <PrismicRichText field={value as RichTextField} />;

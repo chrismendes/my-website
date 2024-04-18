@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, SkillIcon, Sheet, SheetContent, SheetTrigger } from "@/ui";
-import { QuickCarousel } from "@/features/projects";
+import { Button, SkillIcon } from "@/ui";
 import { TechViewModel } from "@/features/tech";
+import { ProjectQuickView } from "@/features/projects";
 import { ZoomIn } from "lucide-react";
 
 interface Props {
@@ -19,16 +19,17 @@ interface Props {
 }
 
 export const ProjectCard = ({ title, description, picture, logo, tech, url, gallery }: Props) => {
-
+  
   const logoCn = "w-auto max-h-[46px]";
-  const pictureCn = "w-full cursor-pointer";
+  const pictureCn = "w-full shadow-lg cursor-pointer";
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
 
   const logoWithProps = (logo) ? React.cloneElement(logo, {
     className: logoCn
   }) : null;
   const pictureWithProps = (picture) ? React.cloneElement(picture, {
     className: pictureCn,
-    onClick: () => setGalleryOpen(true)
+    onClick: () => setQuickViewOpen(true)
   }) : null;
 
   const logoComponent = React.isValidElement(logoWithProps) ?
@@ -53,11 +54,10 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, gall
       />
   );
 
-  const [galleryOpen, setGalleryOpen] = useState(false);
   
   return (
     <div className="flex flex-col items-start gap-y-3 min-w-14 p-6 bg-neutral-50 xl:p-0 xl:bg-none">
-      <div className="h-[216px] overflow-hidden shadow-lg mb-4">
+      <div className="w-full h-auto xl:h-[160px] 2xl:h-[210px] overflow-hidden mb-4">
         {url ?
           <Link href={url}>
             {pictureComponent}
@@ -100,29 +100,20 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, gall
             <Link href={url}>Read More</Link>
           </Button>
         }
-        <Sheet open={galleryOpen} onOpenChange={setGalleryOpen}>
-          <SheetTrigger asChild>
-            <Button variant="secondary">
-              <ZoomIn />
-              Quick View
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="bottom" className="h-1/2 sm:h-2/3 xl:h-3/4 px-8 lg:px-24 py-8">
-            <div className="">
-              <div className="flex items-center justify-center gap-x-4 mb-8">
-                {logoComponent &&
-                  React.cloneElement(logoComponent, {
-                    className: "max-h-8 w-auto"
-                  })
-                }
-                <h2 className="m-0 text-base lg:text-xl">{title}</h2>
-              </div>
-              <div className="flex items-center flex-1 xl:block">
-                <QuickCarousel images={gallery} />
-              </div>
-            </div>
-          </SheetContent>
-        </Sheet>
+        <ProjectQuickView
+          title={title}
+          description={description}
+          logo={logoComponent}
+          tech={tech}
+          pictures={gallery}
+          isOpen={quickViewOpen}
+          setIsOpen={setQuickViewOpen}
+        >
+          <Button variant="secondary">
+            <ZoomIn />
+            Quick View
+          </Button>
+        </ProjectQuickView>
       </div>
     </div>
   )
