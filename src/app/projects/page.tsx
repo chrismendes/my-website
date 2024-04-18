@@ -23,12 +23,12 @@ export default async function ProjectPage() {
             return (
               <li key={index}>
                 <Card
+                  url={(project.description) ? project.url : null}
                   title={project.title}
                   description={project.intro}
                   picture={project.coverPicture}
                   logo={project.logo}
                   tech={project.tech}
-                  url={(project.description) ? "/projects/" + project.uid : null}
                   gallery={project.galleries[0].pictures}
                 />
               </li>

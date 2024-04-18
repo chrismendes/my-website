@@ -10,7 +10,7 @@ export class ProjectIndexViewModel {
   constructor(rawData: Content.ProjectPageDocumentData) {
     this._pageTitle = rawData.page_title;
     this._projects = rawData.projects.filter(item => item.project.data).map((item) => {
-      return new ProjectViewModel(item.project.data);
+      return new ProjectViewModel(item.project.data, item.project.url);
     });
   }
 

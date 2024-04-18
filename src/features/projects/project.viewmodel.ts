@@ -3,7 +3,7 @@ import type { CarouselTab } from "@/ui";
 import { TechViewModel } from "@/features/tech";
 
 export class ProjectViewModel {
-
+  _url: string;
   _title: string;
   _intro: string;
   _coverPicture?: ImageField;
@@ -19,7 +19,8 @@ export class ProjectViewModel {
   
   _link: LinkField;
 
-  constructor(cmsData: Content.ProjectDocumentData) {
+  constructor(cmsData: Content.ProjectDocumentData, url: string) {
+    this._url = url;
     this._title = cmsData.title as string;
     this._intro = cmsData.intro as string;
     this._coverPicture = cmsData.cover_picture;
@@ -37,6 +38,9 @@ export class ProjectViewModel {
     this._link = cmsData.link;
   }
 
+  get url () {
+    return this._url;
+  }
   get title () {
     return this._title;
   }

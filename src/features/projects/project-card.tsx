@@ -58,13 +58,7 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, gall
   return (
     <div className="flex flex-col items-start gap-y-3 min-w-14 p-6 bg-neutral-50 xl:p-0 xl:bg-none">
       <div className="w-full h-auto xl:h-[160px] 2xl:h-[210px] overflow-hidden mb-4">
-        {url ?
-          <Link href={url}>
-            {pictureComponent}
-          </Link>
-        :
-          <>{pictureComponent}</>
-        }
+        {pictureComponent}
       </div>
       {logoComponent &&
         <div className="h-[46px] flex items-center">

@@ -31,7 +31,7 @@ export const CvJob = ({
   index
 }: Props) => (
   <div className="flex flex-col gap-y-2" key={index}>
-    <div className="flex flex-col min-[460px]:flex-row items-center gap-x-6 gap-y-2 text-lg bg-gray-100 p-4">
+    <div className="flex flex-col min-[460px]:flex-row items-center gap-x-6 gap-y-2 text-lg bg-neutral-50 p-4">
       <span className="flex flex-row items-center justify-center sm:justify-start w-full min-[460px]:w-auto lg:w-1/5 text-accent font-bold uppercase text-center text-sm sm:text-base">
         <span className="min-[460px]:w-[46px] xl:w-auto">{dateFrom}</span>
         <span className="min-[460px]:w-[20px] xl:w-auto px-2 text-center"> - </span>
