@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Button, SkillIcon, Sheet, SheetContent, SheetTrigger } from "@/ui";
 import { TechViewModel } from "@/features/tech";
-import { ZoomIn } from "lucide-react";
+import { CircleChevronDown } from "lucide-react";
 
 interface Props {
   title: string;
@@ -25,12 +25,16 @@ export const ProjectQuickView = ({ title, description, logo, tech, pictures, isO
         {children}
       </SheetTrigger>
       <SheetContent side="bottom" className="h-3/4 sm:h-2/3 xl:h-3/4 px-8 lg:px-24 py-8 overflow-y-scroll">
-        <div className="flex items-center justify-center gap-x-4 mb-16">
+        <div className="flex items-center justify-center gap-x-4 mb-12">
           {logo}
           <h2 className="mb-0 text-base lg:text-xl">{title}</h2>
         </div>
+        <div className="flex justify-center gap-x-3 text-neutral-400 text-lg uppercase font-sans select-none">
+          <CircleChevronDown />
+          Scroll Down
+        </div>
         {pictures && pictures.length &&
-          <div className="flex flex-col gap-y-12 xl:gap-y-24">
+          <div className="flex flex-col gap-y-12 xl:gap-y-24 mt-16">
             {pictures.map((picture, index) => (
               React.isValidElement(picture) &&
                 <div className="flex items-center justify-center bg-neutral-100 p-4" key={index}>
