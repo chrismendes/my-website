@@ -62,5 +62,7 @@ const createClient = (config: prismicNext.CreateClientConfig = {}) => {
   return client;
 };
 
-const prismicClient = createClient();
+const prismicClient = createClient({
+  accessToken: process.env.PRISMIC_ACCESS_TOKEN
+});
 export { prismicClient as prismic };
