@@ -17,7 +17,7 @@ export default async function ContactPage() {
         </div>
         <div className="flex flex-col sm:flex-row gap-4 items-start">
           <Linkedin size="24" className="text-accent" />
-          <Link href="https://linkedin.com/in/chrismendes" className="break-all">
+          <Link href="https://linkedin.com/in/chrismendes" target="_blank" className="break-all">
             linkedin.com/in/chrismendes
           </Link>
         </div>
