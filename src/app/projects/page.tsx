@@ -29,6 +29,7 @@ export default async function ProjectPage() {
                   picture={project.coverPicture}
                   logo={project.logo}
                   tech={project.tech}
+                  techDistinctOnly={project.techDistinctOnly}
                   gallery={project.galleries[0].pictures}
                 />
               </li>

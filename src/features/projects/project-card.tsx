@@ -14,11 +14,12 @@ interface Props {
   picture?: JSX.Element;
   logo?: JSX.Element;
   tech?: TechViewModel[];
+  techDistinctOnly?: TechViewModel[];
   url?: string;
   gallery: JSX.Element[];
 }
 
-export const ProjectCard = ({ title, description, picture, logo, tech, url, gallery }: Props) => {
+export const ProjectCard = ({ title, description, picture, logo, tech, techDistinctOnly, url, gallery }: Props) => {
   
   const logoCn = "w-auto max-h-[46px]";
   const pictureCn = "w-full shadow-lg cursor-pointer";
@@ -73,9 +74,9 @@ export const ProjectCard = ({ title, description, picture, logo, tech, url, gall
           <p>{description}</p>
         }
       </div>
-      {(tech && tech.length > 0) &&
+      {(techDistinctOnly && techDistinctOnly.length > 0) &&
         <div className="flex flex-row mb-4 -ml-3">
-          {tech.length && tech.map((tech, index) => {
+          {techDistinctOnly.length && techDistinctOnly.map((tech, index) => {
             return (
             <SkillIcon
               icon={tech.icon}

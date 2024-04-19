@@ -12,6 +12,7 @@ export class ProjectViewModel {
   _logo?: ImageField;
   _description: RichTextField;
   _tech: TechViewModel[];
+  _techDistinctOnly: TechViewModel[];
   _gallery: ImageField[];
   _galleryMobile: ImageField[];
   _galleryBefore: ImageField[];
@@ -31,6 +32,10 @@ export class ProjectViewModel {
     this._tech = cmsData.tech
       .filter(item => item.tech.data)
       .map(({ tech }) => new TechViewModel(tech.data));
+    this._techDistinctOnly = cmsData.tech
+      .filter(item => item.tech.data)
+      .map(({ tech }) => new TechViewModel(tech.data))
+      .filter((tech: TechViewModel) => !tech.nonDistinct)
     this._gallery = cmsData.gallery as ImageField[];
     this._galleryMobile = cmsData.gallery_mobile as ImageField[];
     this._galleryBefore = cmsData.gallery_before as ImageField[];
@@ -72,6 +77,9 @@ export class ProjectViewModel {
   }
   set tech (newTech: TechViewModel[]) {
     this._tech = newTech;
+  }
+  get techDistinctOnly (): TechViewModel[] {
+    return this._techDistinctOnly;
   }
   get galleries () {
     if(this._gallery.length) {

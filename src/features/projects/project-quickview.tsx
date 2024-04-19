@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { Button, SkillIcon, Sheet, SheetContent, SheetTrigger } from "@/ui";
+import { SkillIcon, Sheet, SheetContent, SheetTrigger } from "@/ui";
 import { TechViewModel } from "@/features/tech";
 import { CircleChevronDown } from "lucide-react";
 
@@ -26,33 +25,31 @@ export const ProjectQuickView = ({ title, description, logo, tech, pictures, isO
       </SheetTrigger>
       <SheetContent side="bottom" className="h-3/4 sm:h-2/3 xl:h-3/4 px-8 lg:px-24 py-8 overflow-y-scroll">
         <div className="flex flex-col gap-y-12">
-          <div className="flex items-center justify-center gap-x-4">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             {logo}
-            <h2 className="mb-0 text-base lg:text-xl">{title}</h2>
+            <h2 className="mb-0 text-base lg:text-2xl">{title}</h2>
           </div>
-          <div className="flex flex-col gap-y-6">
-            <div className="flex justify-center">
-              {React.isValidElement(description) ?
-                <>{description}</>
-              :
-                typeof description === "string" &&
-                  <p>{description}</p>
-              }
-            </div>
-            {(tech && tech.length > 0) &&
-              <div className="flex flex-row justify-center gap-x-8">
-                {tech.length && tech.map((tech, index) => {
-                  return (
-                  <SkillIcon
-                    icon={tech.icon}
-                    label={tech.name}
-                    key={index}
-                  />
-                  )
-                })}
-              </div>
+          <div className="flex justify-center">
+            {React.isValidElement(description) ?
+              <>{description}</>
+            :
+              typeof description === "string" &&
+                <p>{description}</p>
             }
           </div>
+          {(tech && tech.length > 0) &&
+            <div className="flex flex-row justify-center gap-8 flex-wrap">
+              {tech.length && tech.map((tech, index) => {
+                return (
+                <SkillIcon
+                  icon={tech.icon}
+                  label={tech.name}
+                  key={index}
+                />
+                )
+              })}
+            </div>
+          }
           <div className="flex justify-center gap-x-3 text-neutral-400 text-lg uppercase font-sans select-none mt-8">
             <CircleChevronDown />
             Scroll Down

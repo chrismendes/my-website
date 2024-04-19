@@ -18,11 +18,7 @@ export class ProjectIndexViewModel {
     return this._pageTitle;
   }
   get projects (): ProjectViewModel[] {
-    return this._projects.map(( project: ProjectViewModel ) => {
-      const distinctTech = project.tech.filter((tech: TechViewModel) => !tech.nonDistinct);
-      project.tech = distinctTech;
-      return project;
-    });
+    return this._projects;
   }
 
 }
