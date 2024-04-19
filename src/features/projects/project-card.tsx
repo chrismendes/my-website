@@ -90,11 +90,11 @@ export const ProjectCard = ({ title, description, picture, logo, tech, techDisti
         </div>
       }
       <div className="flex items-center gap-x-4">
-        {url &&
+        {/* {url &&
           <Button asChild>
             <Link href={url}>Read More</Link>
           </Button>
-        }
+        } */}
         <ProjectQuickView
           title={title}
           description={description}
@@ -104,9 +104,13 @@ export const ProjectCard = ({ title, description, picture, logo, tech, techDisti
           isOpen={quickViewOpen}
           setIsOpen={setQuickViewOpen}
         >
-          <Button variant="secondary">
+          {/* <Button variant="secondary">
             <ZoomIn />
             Quick View
+          </Button> */}
+          <Button>
+            <ZoomIn />
+            Open Gallery
           </Button>
         </ProjectQuickView>
       </div>

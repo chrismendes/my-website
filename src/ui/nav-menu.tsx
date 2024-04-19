@@ -27,11 +27,11 @@ export const NavMenu = ({ currentPath, vertical }: Props) => (
         CV
       </span>
     </Link>
-    <Link className="px-3 text-black hover:text-accent flex text-nowrap" href="/skills">
+    {/* <Link className="px-3 text-black hover:text-accent flex text-nowrap" href="/skills">
       <span className={`py-2 ${activeStyle("/skills", currentPath, vertical)}`}>
         Skills
       </span>
-    </Link>
+    </Link> */}
     <Link className="px-3 text-black hover:text-accent flex text-nowrap" href="/projects">
       <span className={`py-2 ${activeStyle("/projects", currentPath, vertical)}`}>
         Projects
@@ -42,11 +42,11 @@ export const NavMenu = ({ currentPath, vertical }: Props) => (
         Demos
       </span>
     </Link>
-    <Link className="px-3 text-black hover:text-accent flex text-nowrap" href="/about">
+    {/* <Link className="px-3 text-black hover:text-accent flex text-nowrap" href="/about">
       <span className={`py-2 ${activeStyle("/about", currentPath, vertical)}`}>
         About Me
       </span>
-    </Link>
+    </Link> */}
     <Link className="px-3 text-black hover:text-accent flex text-nowrap" href="/contact">
       <span className={`py-2 ${activeStyle("/contact", currentPath, vertical)}`}>
         Contact
