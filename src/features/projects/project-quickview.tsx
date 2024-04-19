@@ -25,24 +25,34 @@ export const ProjectQuickView = ({ title, description, logo, tech, pictures, isO
         {children}
       </SheetTrigger>
       <SheetContent side="bottom" className="h-3/4 sm:h-2/3 xl:h-3/4 px-8 lg:px-24 py-8 overflow-y-scroll">
-        <div className="flex items-center justify-center gap-x-4 mb-12">
-          {logo}
-          <h2 className="mb-0 text-base lg:text-xl">{title}</h2>
-        </div>
-        <div className="flex justify-center gap-x-3 text-neutral-400 text-lg uppercase font-sans select-none">
-          <CircleChevronDown />
-          Scroll Down
-        </div>
-        {pictures && pictures.length &&
-          <div className="flex flex-col gap-y-12 xl:gap-y-24 mt-16">
-            {pictures.map((picture, index) => (
-              React.isValidElement(picture) &&
-                <div className="flex items-center justify-center bg-neutral-100 p-4" key={index}>
-                  {picture}
-                </div>
-              ))}
+        <div className="flex flex-col gap-y-12">
+          <div className="flex items-center justify-center gap-x-4">
+            {logo}
+            <h2 className="mb-0 text-base lg:text-xl">{title}</h2>
           </div>
-        }
+          <div className="flex justify-center">
+            {React.isValidElement(description) ?
+              <>{description}</>
+            :
+              typeof description === "string" &&
+                <p>{description}</p>
+            }
+          </div>
+          <div className="flex justify-center gap-x-3 text-neutral-400 text-lg uppercase font-sans select-none">
+            <CircleChevronDown />
+            Scroll Down
+          </div>
+          {pictures && pictures.length &&
+            <div className="flex flex-col gap-y-12 xl:gap-y-24">
+              {pictures.map((picture, index) => (
+                React.isValidElement(picture) &&
+                  <div className="flex items-center justify-center bg-neutral-100 p-4" key={index}>
+                    {picture}
+                  </div>
+                ))}
+            </div>
+          }
+        </div>
       </SheetContent>
     </Sheet>
   );
