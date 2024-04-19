@@ -22,6 +22,11 @@ export const fetchCvData = async (): Promise<Content.CvPageDocumentData> => {
               }
             }
           }
+          education {
+            edu {
+              ...eduFields
+            }
+          }
         }
       }
     `

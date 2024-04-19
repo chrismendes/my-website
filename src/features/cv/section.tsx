@@ -1,6 +1,6 @@
 interface ComponentProps {
   heading: string;
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export const CvSection = ({ heading, children }: ComponentProps) => (

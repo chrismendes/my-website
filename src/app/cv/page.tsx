@@ -1,9 +1,11 @@
+import React from "react";
 import { notFound } from "next/navigation";
-import { fetchCvData, CvViewModel, CvSection, CvSummary, CvJob } from "@/features/cv";
+import { fetchCvData, CvViewModel, CvSection, CvSummary, CvJob, CvEducation } from "@/features/cv";
 import Link from "next/link";
 import { Button } from "@/ui";
 import { FileDown } from "lucide-react";
 import { withPrismicFieldComponents } from "@/ui";
+import { JobViewModel, EducationViewModel } from "@/features/cv";
 
 export default async function CVPage() {
 
@@ -14,6 +16,7 @@ export default async function CVPage() {
   const viewModel = new CvViewModel(data);
   const Summary = withPrismicFieldComponents(CvSummary);
   const Job = withPrismicFieldComponents(CvJob);
+  const Education = withPrismicFieldComponents(CvEducation);
   
   return (
     <div className="flex flex-col gap-y-8 lg:gap-y-16">
@@ -34,25 +37,43 @@ export default async function CVPage() {
         skillsSecondary={viewModel.skillsSecondary}
       />
       <CvSection heading="Experience">
-        {viewModel.jobs?.map((job, index) => {
+        {viewModel.jobs?.map((job: JobViewModel, index: number) => {
           if (job) {
             return (
-              <CvJob
-                dateFrom={job.date_start}
-                dateTo={job.date_end}
-                jobTitle={job.job_title}
+              <Job
+                dateFrom={job.dateStart}
+                dateTo={job.dateEnd}
+                jobTitle={job.position}
                 jobDescription={job.description}
                 companyName={job.employer}
-                companyLogo={job.employer_logo}
-                companyDescription={job.employer_summary}
+                companyLogo={job.employerLogo}
+                companyDescription={job.employerSummary}
                 companyIndustry={job.industry}
-                companyWebsite={job.employer_website?.url}
+                companyWebsite={job.employerWebsiteURL}
                 key={index}
               />
             );
           }
         })}
-      </CvSection>     
+      </CvSection>
+      <CvSection heading="Education">
+        {viewModel.education?.map((edu: EducationViewModel, index: number) => {
+          if (edu) {
+            return (
+              <React.Fragment key={index}>
+                <Education
+                  degree={edu.degree as string}
+                  institutionName={edu.institution as string}
+                  institutionLogo={edu.institutionLogo}
+                  dateFrom={edu.dateStart}
+                  dateTo={edu.dateEnd}
+                  description={edu.description}
+                />
+              </React.Fragment>
+            );
+          }
+        })}
+      </CvSection>
     </div>
   );
 }

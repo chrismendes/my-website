@@ -1,4 +1,5 @@
 import type { Content, KeyTextField, RichTextField, LinkToMediaField } from "@prismicio/client";
+import { JobViewModel, EducationViewModel } from "@/features/cv";
 
 export class CvViewModel {
 
@@ -7,7 +8,8 @@ export class CvViewModel {
   _summaryText: RichTextField;
   _skillsPrimary: Content.CvPageDocumentDataKeySkillsItem[];
   _skillsSecondary: RichTextField;
-  _jobs: Content.CvPageDocumentDataJobsItem[];
+  _jobs: JobViewModel[] | Content.CvPageDocumentDataJobsItem[];
+  _education: JobViewModel[] | Content.CvPageDocumentDataEducationItem[];
   
   constructor(rawData: Content.CvPageDocumentData) {
     this._pageTitle = rawData.page_title;
@@ -16,6 +18,7 @@ export class CvViewModel {
     this._skillsPrimary = rawData.key_skills;
     this._skillsSecondary = rawData.secondary_skills;
     this._jobs = rawData.jobs;
+    this._education = rawData.education;
   }
 
   get pageTitle () {
@@ -35,18 +38,15 @@ export class CvViewModel {
   get skillsSecondary () {
     return this._skillsSecondary;
   }
-  get jobs (): Content.JobDocumentData[] {
+  get jobs (): JobViewModel[] {
     return this._jobs.filter(item => item.job.data).map(({ job }) => {
-      const jobData = { ...job.data };
-      const startDate = new Date(jobData.date_start);
-      const startMonth = startDate.toLocaleString("default", { month: "long" }).substring(0, 3);
-      const endDate = new Date(jobData.date_end);
-      const endMonth = endDate.toLocaleString("default", { month: "long" }).substring(0, 3);
-      jobData.date_start = `${startMonth} ${startDate.getFullYear()}`;
-      jobData.date_end = `${endMonth} ${endDate.getFullYear()}`;
-      jobData.tech = job.data.tech.map((item: Content.TechDocument) => item.tech.data);
-      return jobData;
-    });;
+      return new JobViewModel(job.data);
+    });
+  }
+  get education (): EducationViewModel[] {
+    return this._education.filter(item => item.edu.data).map(({ edu }) => {
+      return new EducationViewModel(edu.data);
+    });
   }
 
 }

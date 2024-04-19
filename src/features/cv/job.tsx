@@ -1,20 +1,16 @@
-import Link from "next/link";
-import { PrismicRichText } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
-import type { KeyTextField, RichTextField, ImageField } from "@prismicio/client";
+import React from "react";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/ui/hover-card";
-import { friendlyURL } from "@/util";
 
 interface Props {
   dateFrom: string;
   dateTo: string;
-  jobTitle: KeyTextField;
-  jobDescription: RichTextField
-  companyName: KeyTextField;
-  companyLogo?: ImageField | null;
-  companyDescription: KeyTextField;
-  companyIndustry: KeyTextField;
-  companyWebsite?: string;
+  jobTitle: string;
+  jobDescription: JSX.Element;
+  companyName: string;
+  companyLogo?: JSX.Element | null;
+  companyDescription: string;
+  companyIndustry: string;
+  companyWebsite?: JSX.Element;
   index?: number;
 }
 
@@ -50,18 +46,18 @@ export const CvJob = ({
           >
             {companyLogo &&
               <div className="max-h-16 w-auto mb-2">
-                <PrismicNextImage field={companyLogo} className="max-h-12 w-auto" />
+                {React.cloneElement(companyLogo, {
+                  className: "max-h-12 w-auto"
+                })}
               </div>
             }
             <p className="m-0">
               <span className="font-bold uppercase inline-block mr-2">
                 {companyName}
               </span>
-              {companyWebsite && (
-                <Link href={companyWebsite} target="_blank">
-                  {friendlyURL(companyWebsite)}
-                </Link>
-              )}
+              {companyWebsite &&
+                <>{companyWebsite}</>
+              }
             </p>
             {companyIndustry && (
               <p className="m-0 italic">Industry: {companyIndustry}</p>
@@ -75,7 +71,12 @@ export const CvJob = ({
       </span>
     </div>
     <div className="p-4">
-      <PrismicRichText field={jobDescription} />
+      {React.isValidElement(jobDescription) ?
+        <>{jobDescription}</>
+      :
+        typeof jobDescription === "string" &&
+          <p>{jobDescription}</p>
+      }
     </div>
   </div>
 );

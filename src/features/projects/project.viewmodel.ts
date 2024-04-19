@@ -11,7 +11,7 @@ export class ProjectViewModel {
   _employer: Content.JobDocumentData;
   _logo?: ImageField;
   _description: RichTextField;
-  _tech: TechViewModel[]
+  _tech: TechViewModel[];
   _gallery: ImageField[];
   _galleryMobile: ImageField[];
   _galleryBefore: ImageField[];
