@@ -14,11 +14,11 @@ export default async function DemoPage() {
   const Card = withPrismicFieldComponents(DemoCard);
 
   return (
-    <div className="flex flex-row gap-x-12 w-full">
-      <div className="flex w-1/6 pt-10">
+    <div className="flex flex-col xl:flex-row gap-12 w-full">
+      <div className="flex w-full xl:w-1/6 pt-10">
         <h1>{viewModel.pageTitle}</h1>
       </div>
-      <div className="flex w-5/6 self-end bg-neutral-50 p-12">
+      <div className="flex w-full xl:w-5/6 self-end xl:bg-neutral-50 xl:p-12">
         <ul role="list" className="flex flex-col gap-y-28">
           {viewModel.demos?.map((demo, index) => (
             <React.Fragment key={index}>

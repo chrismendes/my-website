@@ -13,9 +13,9 @@ export default async function ProjectPage() {
   const Card = withPrismicFieldComponents(ProjectCard);
   
   return (
-    <div className="flex flex-col xl:flex-row gap-x-12 w-full">
+    <div className="flex flex-col xl:flex-row gap-12 w-full">
       <div className="flex xl:w-1/6 pt-10">
-        <h1 className="mb-6">{viewModel.pageTitle}</h1>
+        <h1>{viewModel.pageTitle}</h1>
       </div>
       <div className="flex xl:w-5/6 self-end xl:bg-neutral-50 xl:p-12">
         <ul role="list" className="flex flex-col xl:grid xl:grid-cols-2 gap-x-32 gap-y-12 xl:gap-y-20">
