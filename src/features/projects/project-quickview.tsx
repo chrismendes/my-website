@@ -29,6 +29,10 @@ export const ProjectQuickView = ({ title, description, logo, tech, pictures, isO
             {logo}
             <h2 className="mb-0 text-base lg:text-2xl">{title}</h2>
           </div>
+          <div className="flex justify-center gap-x-3 text-neutral-400 text-lg uppercase font-sans select-none">
+            <CircleChevronDown />
+            Scroll Down
+          </div>
           <div className="flex justify-center">
             {React.isValidElement(description) ?
               <>{description}</>
@@ -50,10 +54,6 @@ export const ProjectQuickView = ({ title, description, logo, tech, pictures, isO
               })}
             </div>
           }
-          <div className="flex justify-center gap-x-3 text-neutral-400 text-lg uppercase font-sans select-none mt-8">
-            <CircleChevronDown />
-            Scroll Down
-          </div>
           {pictures && pictures.length &&
             <div className="flex flex-col gap-y-12 xl:gap-y-24">
               {pictures.map((picture, index) => (
