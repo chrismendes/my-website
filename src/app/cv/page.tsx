@@ -19,7 +19,7 @@ export default async function CVPage() {
   const Education = withPrismicFieldComponents(CvEducation);
   
   return (
-    <div className="flex flex-col gap-y-8 lg:gap-y-16">
+    <div className="flex flex-col gap-y-8 lg:gap-y-16 w-full">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-8 mb-6">
         <h1 className="text-center sm:text-left">{viewModel.pageTitle}</h1>
         {viewModel.pdf.url &&

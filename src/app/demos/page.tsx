@@ -14,7 +14,7 @@ export default async function DemoPage() {
   const Card = withPrismicFieldComponents(DemoCard);
 
   return (
-    <div className="flex flex-row gap-x-12">
+    <div className="flex flex-row gap-x-12 w-full">
       <div className="flex w-1/6 pt-10">
         <h1>{viewModel.pageTitle}</h1>
       </div>
