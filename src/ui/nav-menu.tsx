@@ -49,7 +49,7 @@ export const NavMenu = ({ currentPath, vertical }: Props) => (
     </Link>
     <Link className="px-3 text-black hover:text-accent flex text-nowrap" href="/contact">
       <span className={`py-2 ${activeStyle("/contact", currentPath, vertical)}`}>
-        Get In Touch
+        Contact
       </span>
     </Link>
     <div className={`flex flex-row ${(!vertical) ? "ml-4" : "mt-4 border-t-2 pt-6"}`}>

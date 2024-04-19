@@ -38,3 +38,7 @@
       50px 50px 0 -44px theme("colors.teal.600");
   }
 }
+
+.email b {
+  display: none;
+}
