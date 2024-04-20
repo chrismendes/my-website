@@ -17,7 +17,7 @@ export class JobViewModel {
   
   constructor(rawData: Content.JobDocumentData) {
     this._dateStart = rawData.date_start;
-    this._dateEnd = rawData.date_start;
+    this._dateEnd = rawData.date_end;
     this._employer = rawData.employer;
     this._employerLogo = rawData.employer_logo;
     this._employerSummary = rawData.employer_summary;
