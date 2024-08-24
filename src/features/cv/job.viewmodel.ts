@@ -1,4 +1,4 @@
-import type { Content, KeyTextField, RichTextField, DateField, ImageField, LinkField } from "@prismicio/client";
+import type { Content, KeyTextField, RichTextField, SelectField, DateField, ImageField, LinkField } from "@prismicio/client";
 import { TechViewModel } from "@/features/tech";
 import { friendlyURL } from "@/util";
 
@@ -12,6 +12,7 @@ export class JobViewModel {
   _employerWebsite: LinkField;
   _industry: KeyTextField;
   _position: KeyTextField;
+  _type: SelectField;
   _description: RichTextField;
   _tech: TechViewModel[];
   
@@ -24,6 +25,7 @@ export class JobViewModel {
     this._employerWebsite = rawData.employer_website;
     this._industry = rawData.industry;
     this._position = rawData.job_title;
+    this._type = rawData.type;
     this._description = rawData.description;
     // @ts-expect-error (TODO: Resolve `item` TS error)
     this._tech = rawData.tech?.map(item => new TechViewModel(item));
@@ -56,7 +58,13 @@ export class JobViewModel {
     return this._industry;
   }
   get position () {
+    if (this._type === "Contract") {
+      return `${this._position} (Contract)`;
+    }
     return this._position;
+  }
+  get type() {
+    return this._type;
   }
   get description () {
     return this._description;
