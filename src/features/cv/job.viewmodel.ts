@@ -17,7 +17,7 @@ export class JobViewModel {
   
   constructor(rawData: Content.JobDocumentData) {
     this._dateStart = rawData.date_start;
-    this._dateEnd = rawData.date_start;
+    this._dateEnd = rawData.date_end;
     this._employer = rawData.employer;
     this._employerLogo = rawData.employer_logo;
     this._employerSummary = rawData.employer_summary;
@@ -25,6 +25,7 @@ export class JobViewModel {
     this._industry = rawData.industry;
     this._position = rawData.job_title;
     this._description = rawData.description;
+    // @ts-expect-error (TODO: Resolve `item` TS error)
     this._tech = rawData.tech?.map(item => new TechViewModel(item));
   }
 
@@ -34,6 +35,7 @@ export class JobViewModel {
     return `${startMonth} ${startDate.getFullYear()}`;
   }
   get dateEnd () {
+    if (!this._dateEnd) return 'Present'
     const endDate = new Date(this._dateEnd as string);
     const endMonth = endDate.toLocaleString("default", { month: "long" }).substring(0, 3);
     return `${endMonth} ${endDate.getFullYear()}`;
