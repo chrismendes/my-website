@@ -8,16 +8,16 @@ interface Props {
 }
 
 export const ProjectBody = ({ bodyText, tech }: Props) => (
-  <div className="flex mt-28 gap-x-12">
+  <div className="flex flex-col md:flex-row mt-28 gap-12">
     {bodyText && React.isValidElement(bodyText) &&
-      <div className="w-3/5 text-lg">
+      <div className="md:w-3/5 text-lg">
         {bodyText}
       </div>
     }
-    <div className="w-2/5">
-      <ul className="grid grid-cols-4 gap-y-8">
+    <div className="md:w-2/5">
+      <ul className="grid grid-cols-4 gap-y-8 gap-x-8">
         {tech?.map((tech, index) => (
-          <li className="flex flex-col items-center justify-center gap-y-3 min-w-14" key={index}>
+          <li key={index}>
             <SkillIcon
               icon={tech.icon}
               label={tech.name}
