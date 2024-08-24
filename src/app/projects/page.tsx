@@ -25,7 +25,8 @@ export default async function ProjectPage() {
                 <Card
                   url={(project.description) ? project.url : null}
                   title={project.title}
-                  description={project.intro}
+                  intro={project.intro}
+                  description={project.description}
                   picture={project.coverPicture}
                   logo={project.logo}
                   tech={project.tech}

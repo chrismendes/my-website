@@ -10,7 +10,8 @@ import { ZoomIn } from "lucide-react";
 
 interface Props {
   title: string;
-  description: string;
+  intro: string;
+  description: JSX.Element;
   picture?: JSX.Element;
   logo?: JSX.Element;
   tech?: TechViewModel[];
@@ -19,8 +20,7 @@ interface Props {
   gallery: JSX.Element[];
 }
 
-export const ProjectCard = ({ title, description, picture, logo, tech, techDistinctOnly, url, gallery }: Props) => {
-  
+export const ProjectCard = ({ title, intro, description, picture, logo, tech, techDistinctOnly, url, gallery }: Props) => {
   const logoCn = "w-auto max-h-[46px]";
   const pictureCn = "w-full shadow-lg cursor-pointer";
   const [quickViewOpen, setQuickViewOpen] = useState(false);
@@ -30,7 +30,7 @@ export const ProjectCard = ({ title, description, picture, logo, tech, techDisti
   }) : null;
   const pictureWithProps = (picture) ? React.cloneElement(picture, {
     className: pictureCn,
-    onClick: () => setQuickViewOpen(true)
+    onClick: () => { if (!url) setQuickViewOpen(true) }
   }) : null;
 
   const logoComponent = React.isValidElement(logoWithProps) ?
@@ -59,7 +59,11 @@ export const ProjectCard = ({ title, description, picture, logo, tech, techDisti
   return (
     <div className="flex flex-col items-start gap-y-3 min-w-14 p-6 bg-neutral-50 xl:p-0 xl:bg-none">
       <div className="w-full h-auto xl:h-[160px] 2xl:h-[210px] overflow-hidden mb-4">
-        {pictureComponent}
+        {url ?
+          <Link href={url}>{pictureComponent}</Link>
+        :
+          <>{pictureComponent}</>
+        }
       </div>
       {logoComponent &&
         <div className="h-[46px] flex items-center">
@@ -70,8 +74,8 @@ export const ProjectCard = ({ title, description, picture, logo, tech, techDisti
         {title &&
           <h2>{title}</h2>
         }
-        {description &&
-          <p>{description}</p>
+        {intro &&
+          <p>{intro}</p>
         }
       </div>
       {(techDistinctOnly && techDistinctOnly.length > 0) &&
@@ -90,27 +94,23 @@ export const ProjectCard = ({ title, description, picture, logo, tech, techDisti
         </div>
       }
       <div className="flex items-center gap-x-4">
-        {/* {url &&
+        {url &&
           <Button asChild>
             <Link href={url}>Read More</Link>
           </Button>
-        } */}
+        }
         <ProjectQuickView
           title={title}
-          description={description}
+          description={intro}
           logo={logoComponent}
           tech={tech}
           pictures={gallery}
           isOpen={quickViewOpen}
           setIsOpen={setQuickViewOpen}
         >
-          {/* <Button variant="secondary">
+          <Button variant="secondary">
             <ZoomIn />
             Quick View
-          </Button> */}
-          <Button>
-            <ZoomIn />
-            Open Gallery
           </Button>
         </ProjectQuickView>
       </div>

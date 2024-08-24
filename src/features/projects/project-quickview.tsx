@@ -7,7 +7,7 @@ import { CircleChevronDown } from "lucide-react";
 
 interface Props {
   title: string;
-  description: string;
+  description: JSX.Element | string;
   logo?: JSX.Element | false;
   tech?: TechViewModel[];
   pictures: JSX.Element[];
@@ -17,7 +17,6 @@ interface Props {
 }
 
 export const ProjectQuickView = ({ title, description, logo, tech, pictures, isOpen, setIsOpen, children }: Props) => {
-  
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>

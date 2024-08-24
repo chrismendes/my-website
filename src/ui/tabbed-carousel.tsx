@@ -52,7 +52,11 @@ export const TabbedCarousel = ({ carousels }: Props) => (
               <CarouselItem key={index}>
                 <div className="flex justify-center">
                   {React.isValidElement(picture) &&
-                    <>{picture}</>
+                    <>
+                    {React.cloneElement(picture, {
+                      className: "w-auto"
+                    })}
+                    </>
                   } 
                 </div>
               </CarouselItem>
