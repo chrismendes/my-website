@@ -25,8 +25,8 @@ export default function RootLayout({
             {children}
           </main>
         </div>
-        <footer className="border-t border-gray-100 bg-gray-500 p-6 text-xs font-sans text-white text-center">
-          &copy; 2024 Christopher Mendes
+        <footer className="border-t border-gray-100 bg-gray-100 p-6 text-xs font-sans text-center text-gray-400">
+          &copy; 2026 Christopher Mendes
         </footer>
         <PrismicPreview repositoryName={repositoryName} />
       </body>
