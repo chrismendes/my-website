@@ -37,11 +37,11 @@ export const NavMenu = ({ currentPath, vertical }: Props) => (
         Projects
       </span>
     </Link>
-    <Link className="px-3 text-black hover:text-accent flex text-nowrap" href="/demos">
+    {/* <Link className="px-3 text-black hover:text-accent flex text-nowrap" href="/demos">
       <span className={`py-2 ${activeStyle("/demos", currentPath, vertical)}`}>
         Demos
       </span>
-    </Link>
+    </Link> */}
     {/* <Link className="px-3 text-black hover:text-accent flex text-nowrap" href="/about">
       <span className={`py-2 ${activeStyle("/about", currentPath, vertical)}`}>
         About Me
@@ -53,9 +53,9 @@ export const NavMenu = ({ currentPath, vertical }: Props) => (
       </span>
     </Link>
     <div className={`flex flex-row ${(!vertical) ? "ml-4" : "mt-4 border-t-2 pt-6"}`}>
-      <Link className="py-2 px-2 flex text-black" href="https://github.com/chrismendes/" target="_blank">
+      {/* <Link className="py-2 px-2 flex text-black" href="https://github.com/chrismendes/" target="_blank">
         <IconGitHub />
-      </Link>
+      </Link> */}
       <Link className="py-2 px-2 flex text-black" href="https://www.linkedin.com/in/chrismendes/" target="_blank">
         <IconLinkedIn />
       </Link>
