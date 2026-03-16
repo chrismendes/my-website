@@ -79,7 +79,7 @@ export const ProjectCard = ({ title, intro, description, picture, logo, tech, te
         }
       </div>
       {(techDistinctOnly && techDistinctOnly.length > 0) &&
-        <div className="flex flex-row mb-4 -ml-3">
+        <div className="flex flex-row mb-4 -ml-3 flex-wrap gap-y-4">
           {techDistinctOnly.length && techDistinctOnly.map((tech, index) => {
             return (
             <SkillIcon
